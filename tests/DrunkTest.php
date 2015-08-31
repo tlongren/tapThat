@@ -7,6 +7,7 @@
     */
 
     require_once "src/Drunk.php";
+    require_once "src/Beer.php";
 
 
     $server = 'mysql:host=localhost:8889;dbname=tap_that_test';
@@ -352,6 +353,7 @@
             $brewery_id = 1;
             $test_beer = new Beer($id2, $name2, $type, $abv, $ibu, $region, $brewery_id);
             $test_beer->save();
+            
 
             //Act
             $test_drunk->addBeer($test_beer);
