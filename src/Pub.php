@@ -58,14 +58,14 @@
             $this->id = $GLOBALS['DB']->lastInsertId();
         }
 
-        function update()
+        function update($column_to_update, $new_info)
         {
-
+            $GLOBALS['DB']->exec("UPDATE pubs SET {$column_to_update} = '{$new_info}' WHERE id = {$this->getId()};");
         }
 
         function delete()
         {
-
+            $GLOBALS['DB']->exec("DELETE FROM pubs WHERE id = {$this->getId()};");
         }
 
         //class interaction methods (on tap, beers_drunks)
