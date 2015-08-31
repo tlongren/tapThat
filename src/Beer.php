@@ -87,6 +87,20 @@
             $this->id = $GLOBALS['DB']->lastInsertId();
         }
 
+        function update($field, $new_value)
+        {
+            if (is_string($new_value)) {
+                $GLOBALS['DB']->exec("UPDATE beers SET {$field} = '{$new_value}' WHERE id = {$this->getId()};");
+            } else {
+                $GLOBALS['DB']->exec("UPDATE beers SET {$field} = {$new_value} WHERE id = {$this->getId()};");
+            }
+        }
+
+        function delete()
+        {
+            $GLOBALS['DB']->exec("DELETE FROM beers WHERE id = {$this->getId()};");
+        }
+
         static function getAll()
         {
             $returned_beers = $GLOBALS['DB']->query("SELECT * FROM beers;");
@@ -109,6 +123,20 @@
         {
             $GLOBALS['DB']->exec("DELETE FROM beers;");
         }
+
+        static function find($search_id)
+        {
+            $found_beer = null;
+            $beers = Beer::getAll();
+            foreach ($beers as $beer) {
+                $beer_id = $beer->getId();
+                if ($beer_id == $search_id) {
+                    $found_beer = $beer;
+                }
+            }
+            return $found_beer;
+        }
+
     }
 
 ?>
