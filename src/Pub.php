@@ -92,7 +92,7 @@
             $GLOBALS['DB']->exec("DELETE FROM pubs;");
         }
 
-        static function find()
+        static function find($search_id)
         {
 
         }

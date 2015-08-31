@@ -206,6 +206,28 @@
 
 
         //find test
+        function test_find()
+        {
+            //Arrange
+            $name = "Paddys";
+            $location = "462 Over There Way";
+            $link = "www.paddyspub.com";
+            $test_pub = new Pub($name, $location, $link);
+            $test_pub->save();
+
+            $name2 = "Moon & Raven";
+            $location2 = "42 Williams St.";
+            $link2 = "www.moonraven.com";
+            $test_pub2 = new Pub($name, $location, $link);
+            $test_pub->save();
+
+            //Act
+            $result = Pub::find($test_pub2->getId());
+
+            //Assert
+            $this->assertEquals($test_pub2, $result);
+
+        }
     }
 
 ?>
