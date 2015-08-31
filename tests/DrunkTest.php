@@ -353,14 +353,14 @@
             $brewery_id = 1;
             $test_beer = new Beer($id2, $name2, $type, $abv, $ibu, $region, $brewery_id);
             $test_beer->save();
-            
+
 
             //Act
             $test_drunk->addBeer($test_beer);
             $result = $test_drunk->getBeers();
 
             //Assert
-            $this->assertEquals([$test_beer], $result[0]);
+            $this->assertEquals($test_beer, $result[0]);
         }
 
         function testDeleteBeer()
@@ -387,16 +387,17 @@
             $id3 = null;
             $name3 = "Lip Blaster";
             $type3 = "IPA";
-            $abv3 = 4.2;
-            $ibu3 = 10;
+            $abv3 = 5;
+            $ibu3 = 100;
             $region3 = "Pacific Northwest";
-            $brewery_id3 = 1;
+            $brewery_id3 = 3;
             $test_beer2 = new Beer($id3, $name3, $type3, $abv3, $ibu3, $region3, $brewery_id3);
 
             //Act
             $test_drunk->addBeer($test_beer);
             $test_drunk->addBeer($test_beer2);
             $test_drunk->deleteBeer($test_beer);
+            var_dump($test_drunk->getBeers());
 
 
             //Assert

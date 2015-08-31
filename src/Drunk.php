@@ -90,7 +90,7 @@
 
         function getBeers()
         {
-            $returned_beers = $GLOBALS['DB']->query("SELECT beers.* FROM drunks JOIN brews ON (drunks.id = brews.drunk_id) JOIN beers ON (beers.id = brews.beer_id) WHERE drunk.id = {$this->getId()}");
+            $returned_beers = $GLOBALS['DB']->query("SELECT beers.* FROM drunks JOIN brews ON (drunks.id = brews.drunk_id) JOIN beers ON (beers.id = brews.beer_id) WHERE drunks.id = {$this->getId()}");
             $beers = array();
             foreach($returned_beers as $beer) {
                 $name = $beer['name'];
@@ -115,7 +115,7 @@
         {
             $GLOBALS['DB']->exec("DELETE FROM brews WHERE drunk_id = {$this->getId()}");
         }
-        
+
         ////////////Static functions///////////////////
 
         static function getAll()
