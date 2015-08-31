@@ -33,6 +33,24 @@
             //Assert
             $this->assertEquals($name, $result);
         }
+
+        function test_setName()
+        {
+            //Arrange
+            $name = "Paddys";
+            $location = "462 Over There Way";
+            $link = "www.paddyspub.com";
+            $test_pub = new Pub($name, $location, $link);
+
+            $new_name = "The Bar";
+
+            //Act
+            $test_pub->setName($new_name);
+            $result = $test_pub->getName();
+
+            //Assert
+            $this->assertEquals($new_name, $result);
+        }
     }
 
 ?>
