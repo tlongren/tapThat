@@ -89,9 +89,16 @@
             $GLOBALS['DB']->exec("DELETE FROM breweries;");
         }
 
-        static function find()
+        static function find($search_id)
         {
-
+            $found_brewery = null;
+            $all_breweries = Brewery::getAll();
+            foreach ($all_breweries as $brewery) {
+                if ($brewery->getId() == $search_id) {
+                    $found_brewery = $brewery;
+                }
+            }
+            return $found_brewery;
         }
     }
 
