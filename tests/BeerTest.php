@@ -167,6 +167,36 @@
             $this->assertEquals($test_beer, $result);
         }
 
+        function testDeleteBeer()
+        {
+            //Arrange
+            $id = null;
+            $name = "Lip Blaster";
+            $type = "IPA";
+            $abv = 4.2;
+            $ibu = 10;
+            $region = "Pacific Northwest";
+            $brewery_id = 1;
+            $test_beer = new Beer($id, $name, $type, $abv, $ibu, $region, $brewery_id);
+            $test_beer->save();
+
+            $new_name = "Hip Hops";
+            $new_type = "Pale Ale";
+            $new_abv = 3.2;
+            $new_ibu = 4;
+            $new_region = "South Central LA";
+            $new_brewery_id = 2;
+            $test_beer2 = new Beer($id, $name, $type, $abv, $ibu, $region, $brewery_id);
+            $test_beer2->save();
+
+            //Act
+            $test_beer->delete();
+
+            //Assert
+            $result = Beer::getAll();
+            $this->assertEquals([$test_beer2], $result);
+        }
+
 
 
     }

@@ -96,6 +96,11 @@
             }
         }
 
+        function delete()
+        {
+            $GLOBALS['DB']->exec("DELETE FROM beers WHERE id = {$this->getId()};");
+        }
+
         static function getAll()
         {
             $returned_beers = $GLOBALS['DB']->query("SELECT * FROM beers;");
@@ -131,6 +136,7 @@
             }
             return $found_beer;
         }
+
     }
 
 ?>
