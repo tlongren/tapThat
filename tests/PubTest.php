@@ -171,7 +171,7 @@
             $location2 = "42 Williams St.";
             $link2 = "www.moonraven.com";
             $test_pub2 = new Pub($name, $location, $link);
-            $test_pub->save();
+            $test_pub2->save();
 
             //Act
             $result = Pub::getAll();

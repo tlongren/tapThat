@@ -53,7 +53,9 @@
         //database methods
         function save()
         {
-
+            $GLOBALS['DB']->exec("INSERT INTO pubs (name, location, link) VALUES (
+            '{$this->getName()}', '{$this->getLocation()}', '{$this->getLink()}');");
+            $this->id = $GLOBALS['DB']->lastInsertId();
         }
 
         function update()
@@ -72,12 +74,22 @@
         //static methods
         static function getAll()
         {
-
+            $pubs_query = $GLOBALS['DB']->query("SELECT * FROM pubs;");
+            $all_pubs = array();
+            foreach ($pubs_query as $pub) {
+                $name = $pub['name'];
+                $location = $pub['location'];
+                $link = $pub['link'];
+                $id = $pub['id'];
+                $new_pub = new Pub($name, $location, $link, $id);
+                array_push($all_pubs, $new_pub);
+            }
+            return $all_pubs;
         }
 
         static function deleteAll()
         {
-
+            $GLOBALS['DB']->exec("DELETE FROM pubs;");
         }
 
         static function find()
