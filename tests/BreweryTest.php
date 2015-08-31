@@ -35,6 +35,67 @@
             //Assert
             $this->assertEquals($name, $result);
         }
+
+        function test_save()
+        {
+            //Arrange
+            $name = "Bullfrog Brewery";
+            $location = "Somewhere in Williamsport";
+            $link = "www.bullfrogbrewing.com";
+            $test_brewery = new Brewery ($name, $location, $link);
+
+            //Act
+            $test_brewery->save();
+
+            //Assert
+            $result = Brewery::getAll();
+            $this->assertEquals($test_brewery, $result[0]);
+        }
+
+        function test_getAll()
+        {
+            //Arrange
+            $name = "Bullfrog Brewery";
+            $location = "Somewhere in Williamsport";
+            $link = "www.bullfrogbrewing.com";
+            $test_brewery = new Brewery ($name, $location, $link);
+            $test_brewery->save();
+
+            $name = "Yards Brewing Co.";
+            $location = "Philthadone";
+            $link = "www.makebeer.com";
+            $test_brewery2 = new Brewery ($name, $location, $link);
+            $test_brewery2->save();
+
+            //Act
+            $result = Brewery::getAll();
+
+            //Assert
+            $this->assertEquals([$test_brewery, $test_brewery2], $result);
+        }
+
+        function test_deleteAll()
+        {
+            //Arrange
+            $name = "Bullfrog Brewery";
+            $location = "Somewhere in Williamsport";
+            $link = "www.bullfrogbrewing.com";
+            $test_brewery = new Brewery ($name, $location, $link);
+            $test_brewery->save();
+
+            $name = "Yards Brewing Co.";
+            $location = "Philthadone";
+            $link = "www.makebeer.com";
+            $test_brewery2 = new Brewery ($name, $location, $link);
+            $test_brewery2->save();
+
+            //Act
+            Brewery::deleteAll();
+
+            //Assert
+            $result = Brewery::getAll();
+            $this->assertEquals([], $result);
+        }
     }
 
  ?>
