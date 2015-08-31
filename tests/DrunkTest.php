@@ -332,6 +332,34 @@
             $this->assertEquals([$test_drunk2], $result);
         }
 
+        function testAddBeer()
+        {
+            //Arrange
+            $name = "Person 1";
+            $date_of_birth = "1988-03-04";
+            $location = "Portland, OR";
+            $email = "email@email.com";
+            $id = 1;
+            $test_drunk = new Drunk($name, $date_of_birth, $location, $email, $id);
+            $test_drunk->save();
+
+            $id = null;
+            $name = "Lip Blaster";
+            $type = "IPA";
+            $abv = 4.2;
+            $ibu = 10;
+            $region = "Pacific Northwest";
+            $brewery_id = 1;
+            $test_beer = new Beer($id, $name, $type, $abv, $ibu, $region, $brewery_id);
+
+            //Act
+            $test_drunk->addBeer($test_beer);
+            $result = $test_drunk->getBeers();
+
+            //Assert
+            $this->assertEquals([$test_beer], $result[0]);
+        }
+
     }
 
  ?>
