@@ -94,7 +94,14 @@
 
         static function find($search_id)
         {
-
+            $found_pub = null;
+            $all_pubs = Pub::getAll();
+            foreach ($all_pubs as $pub) {
+                if ($pub->getId() == $search_id) {
+                    $found_pub = $pub;
+                }
+            }
+            return $found_pub;
         }
 
     }
