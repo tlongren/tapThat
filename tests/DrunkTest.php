@@ -281,6 +281,57 @@
             $this->assertEquals($new_name, $result[0]->getName());
         }
 
+        function testFind()
+        {
+            //Arrange
+            $name = "Person 1";
+            $date_of_birth = "1988-03-04";
+            $location = "Portland, OR";
+            $email = "email@email.com";
+            $test_drunk = new Drunk($name, $date_of_birth, $location, $email, $id);
+            $test_drunk->save();
+
+            $name2 = "Person 1";
+            $date_of_birth2 = "1988-03-04";
+            $location2 = "Portland, OR";
+            $email2 = "email@email.com";
+            $test_drunk2 = new Drunk($name2, $date_of_birth2, $location2, $email2, $id2);
+            $test_drunk2->save();
+
+            //Act
+            $result = Drunk::find($test_drunk2->getId());
+
+            //Assert
+
+            $this->assertEquals($test_drunk2, $result);
+        }
+
+        function testdelete()
+        {
+            //Arrange
+            $name = "Person 1";
+            $date_of_birth = "1988-03-04";
+            $location = "Portland, OR";
+            $email = "email@email.com";
+            $test_drunk = new Drunk($name, $date_of_birth, $location, $email, $id);
+            $test_drunk->save();
+
+            $name2 = "Person 1";
+            $date_of_birth2 = "1988-03-04";
+            $location2 = "Portland, OR";
+            $email2 = "email@email.com";
+            $test_drunk2 = new Drunk($name2, $date_of_birth2, $location2, $email2, $id2);
+            $test_drunk2->save();
+
+            //Act
+            $test_drunk->delete();
+            $result = Drunk::getALL();
+
+            //Assert
+
+            $this->assertEquals([$test_drunk2], $result);
+        }
+
     }
 
  ?>
