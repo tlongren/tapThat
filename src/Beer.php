@@ -109,6 +109,19 @@
         {
             $GLOBALS['DB']->exec("DELETE FROM beers;");
         }
+
+        static function find($search_id)
+        {
+            $found_beer = null;
+            $beers = Beer::getAll();
+            foreach ($beers as $beer) {
+                $beer_id = $beer->getId();
+                if ($beer_id == $search_id) {
+                    $found_beer = $beer;
+                }
+            }
+            return $found_beer;
+        }
     }
 
 ?>
