@@ -343,14 +343,15 @@
             $test_drunk = new Drunk($name, $date_of_birth, $location, $email, $id);
             $test_drunk->save();
 
-            $id = null;
-            $name = "Lip Blaster";
+            $id2 = null;
+            $name2 = "Lip Blaster";
             $type = "IPA";
             $abv = 4.2;
             $ibu = 10;
             $region = "Pacific Northwest";
             $brewery_id = 1;
-            $test_beer = new Beer($id, $name, $type, $abv, $ibu, $region, $brewery_id);
+            $test_beer = new Beer($id2, $name2, $type, $abv, $ibu, $region, $brewery_id);
+            $test_beer->save();
 
             //Act
             $test_drunk->addBeer($test_beer);
@@ -358,6 +359,47 @@
 
             //Assert
             $this->assertEquals([$test_beer], $result[0]);
+        }
+
+        function testDeleteBeer()
+        {
+            //Arrange
+            $name = "Person 1";
+            $date_of_birth = "1988-03-04";
+            $location = "Portland, OR";
+            $email = "email@email.com";
+            $id = 1;
+            $test_drunk = new Drunk($name, $date_of_birth, $location, $email, $id);
+            $test_drunk->save();
+
+            $id2 = null;
+            $name2 = "Lip Blaster";
+            $type = "IPA";
+            $abv = 4.2;
+            $ibu = 10;
+            $region = "Pacific Northwest";
+            $brewery_id = 1;
+            $test_beer = new Beer($id2, $name2, $type, $abv, $ibu, $region, $brewery_id);
+            $test_beer->save();
+
+            $id3 = null;
+            $name3 = "Lip Blaster";
+            $type3 = "IPA";
+            $abv3 = 4.2;
+            $ibu3 = 10;
+            $region3 = "Pacific Northwest";
+            $brewery_id3 = 1;
+            $test_beer2 = new Beer($id3, $name3, $type3, $abv3, $ibu3, $region3, $brewery_id3);
+
+            //Act
+            $test_drunk->addBeer($test_beer);
+            $test_drunk->addBeer($test_beer2);
+            $test_drunk->deleteBeer($test_beer);
+
+
+            //Assert
+            $result = $test_drunk->getBeers();
+            $this->assertEquals([$test_beer2], $result);
         }
 
     }
