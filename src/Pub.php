@@ -107,6 +107,11 @@
             return $matching_beers;
         }
 
+        function deleteAllBeers()
+        {
+            $GLOBALS['DB']->exec("DELETE FROM on_tap WHERE pub_id = {$this->getId()};");
+        }
+
         //static methods
         static function getAll()
         {
