@@ -6,6 +6,7 @@
     */
 
     require_once 'src/Beer.php';
+    require_once 'src/Pub.php';
 
     $server = 'mysql:host=localhost;dbname=tap_that_test';
     $username = 'root';
@@ -195,6 +196,34 @@
             //Assert
             $result = Beer::getAll();
             $this->assertEquals([$test_beer2], $result);
+        }
+
+        function testGetPubs()
+        {
+            //Arrange
+            $id = null;
+            $name = "Lip Blaster";
+            $type = "IPA";
+            $abv = 4.2;
+            $ibu = 10;
+            $region = "Pacific Northwest";
+            $brewery_id = 1;
+            $test_beer = new Beer($id, $name, $type, $abv, $ibu, $region, $brewery_id);
+            $test_beer->save();
+
+            $name = "The Outback Steakhouse";
+            $location = "300NW Outback Steak Rd";
+            $link = "http://www.outback.com/"
+            $test_pub = new Pub($name, $location, $link);
+            $test_pub->save();
+
+            $test_pub->addBeer($test_beer);
+
+            //Act
+            $result = $test_beer->getPubs();
+
+            //Assert
+            $this->assertEquals([$test_pub], $result)
         }
 
 
