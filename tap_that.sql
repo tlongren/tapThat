@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Sep 01, 2015 at 12:33 AM
+-- Generation Time: Sep 01, 2015 at 01:01 AM
 -- Server version: 5.5.42
 -- PHP Version: 5.6.10
 
@@ -41,18 +41,6 @@ CREATE TABLE `beers` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `beers_drunks`
---
-
-CREATE TABLE `beers_drunks` (
-  `beer_id` int(11) NOT NULL,
-  `drunk_id` int(11) NOT NULL,
-  `id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `breweries`
 --
 
@@ -61,6 +49,18 @@ CREATE TABLE `breweries` (
   `name` varchar(255) DEFAULT NULL,
   `location` varchar(255) DEFAULT NULL,
   `link` varchar(255) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `brews`
+--
+
+CREATE TABLE `brews` (
+  `beer_id` int(11) NOT NULL,
+  `drunk_id` int(11) NOT NULL,
+  `id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -113,15 +113,15 @@ ALTER TABLE `beers`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `beers_drunks`
---
-ALTER TABLE `beers_drunks`
-  ADD PRIMARY KEY (`id`);
-
---
 -- Indexes for table `breweries`
 --
 ALTER TABLE `breweries`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `brews`
+--
+ALTER TABLE `brews`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -153,14 +153,14 @@ ALTER TABLE `pubs`
 ALTER TABLE `beers`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
--- AUTO_INCREMENT for table `beers_drunks`
---
-ALTER TABLE `beers_drunks`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
---
 -- AUTO_INCREMENT for table `breweries`
 --
 ALTER TABLE `breweries`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `brews`
+--
+ALTER TABLE `brews`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `drunks`
