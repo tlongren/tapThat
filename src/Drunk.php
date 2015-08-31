@@ -1,5 +1,5 @@
 <?php
-
+    require_once "Beer.php";
     class Drunk
     {
         private $name;
@@ -79,6 +79,35 @@
         function delete()
         {
             $GLOBALS['DB']->exec("DELETE FROM drunks WHERE id = {$this->getId()}");
+            $GLOBALS['DB']->exec("DELETE FROM beers_drunks WHERE drunk_id = {$this->getId()}");
+        }
+
+        function addBeer($beer)
+        {
+            $GLOBALS['DB']->exec("INSERT INTO beers_drunks (beer_id, drunk_id) VALUES ({$beer->getId()}, {$this->getId()})");
+        }
+
+        function deleteBeer($beer)
+        {
+            $GLOBALS['DB']->exec("DELETE FROM beers_drunks WHERE beer_id = {$beer->getId()} AND drunk_id = {$this->getId()}");
+        }
+
+        function getBeers()
+        {
+            $returned_beers = $GLOBALS['DB']->query("SELECT beers.* FROM drunks JOIN beers_drunks ON (drunks.id = beers_drunks.drunk_id) JOIN beers ON (beers.id = beers_drunks.beer_id) WHERE drunk.id = {$this->getId()}");
+            $beers = array();
+            foreach($returned_beers as $beer) {
+                $name = $beer['name'];
+                $type = $beer['type'];
+                $abv = $beer['abv'];
+                $ibu = $beer['ibu'];
+                $region = $beer['region'];
+                $brewery_id = $beer['brewery_id'];
+                $id = $beer['id'];
+                $new_beer = new Beer($id, $name, $type, $abv, $ibu, $region, $brewery_id);
+                array_push($beers, $new_beer);
+            }
+            return $beers;
         }
 
         ////////////Static functions///////////////////
@@ -102,6 +131,7 @@
         static function deleteAll()
         {
             $GLOBALS['DB']->exec("DELETE FROM drunks");
+            $GLOBALS['DB']->exec("DELETE FROM beers_drunks");
         }
 
         static function find($search_id)

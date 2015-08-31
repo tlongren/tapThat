@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.4.11
+-- version 4.4.10
 -- http://www.phpmyadmin.net
 --
--- Host: localhost:8080
--- Generation Time: Aug 31, 2015 at 10:14 PM
--- Server version: 5.6.26
--- PHP Version: 5.6.11
+-- Host: localhost
+-- Generation Time: Sep 01, 2015 at 12:33 AM
+-- Server version: 5.5.42
+-- PHP Version: 5.6.10
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -28,7 +28,7 @@ USE `tap_that`;
 -- Table structure for table `beers`
 --
 
-CREATE TABLE IF NOT EXISTS `beers` (
+CREATE TABLE `beers` (
   `id` int(11) NOT NULL,
   `name` varchar(255) DEFAULT NULL,
   `type` varchar(255) DEFAULT NULL,
@@ -41,10 +41,22 @@ CREATE TABLE IF NOT EXISTS `beers` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `beers_drunks`
+--
+
+CREATE TABLE `beers_drunks` (
+  `beer_id` int(11) NOT NULL,
+  `drunk_id` int(11) NOT NULL,
+  `id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `breweries`
 --
 
-CREATE TABLE IF NOT EXISTS `breweries` (
+CREATE TABLE `breweries` (
   `id` int(11) NOT NULL,
   `name` varchar(255) DEFAULT NULL,
   `location` varchar(255) DEFAULT NULL,
@@ -57,7 +69,7 @@ CREATE TABLE IF NOT EXISTS `breweries` (
 -- Table structure for table `drunks`
 --
 
-CREATE TABLE IF NOT EXISTS `drunks` (
+CREATE TABLE `drunks` (
   `id` bigint(20) unsigned NOT NULL,
   `name` varchar(255) DEFAULT NULL,
   `date_of_birth` date DEFAULT NULL,
@@ -71,7 +83,7 @@ CREATE TABLE IF NOT EXISTS `drunks` (
 -- Table structure for table `on_tap`
 --
 
-CREATE TABLE IF NOT EXISTS `on_tap` (
+CREATE TABLE `on_tap` (
   `id` int(11) NOT NULL,
   `pub_id` int(11) DEFAULT NULL,
   `beer_id` int(11) DEFAULT NULL
@@ -83,7 +95,7 @@ CREATE TABLE IF NOT EXISTS `on_tap` (
 -- Table structure for table `pubs`
 --
 
-CREATE TABLE IF NOT EXISTS `pubs` (
+CREATE TABLE `pubs` (
   `id` int(11) NOT NULL,
   `name` varchar(255) DEFAULT NULL,
   `location` varchar(255) DEFAULT NULL,
@@ -98,6 +110,12 @@ CREATE TABLE IF NOT EXISTS `pubs` (
 -- Indexes for table `beers`
 --
 ALTER TABLE `beers`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `beers_drunks`
+--
+ALTER TABLE `beers_drunks`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -133,6 +151,11 @@ ALTER TABLE `pubs`
 -- AUTO_INCREMENT for table `beers`
 --
 ALTER TABLE `beers`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `beers_drunks`
+--
+ALTER TABLE `beers_drunks`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `breweries`
