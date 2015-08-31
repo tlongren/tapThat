@@ -96,6 +96,28 @@
             $result = Brewery::getAll();
             $this->assertEquals([], $result);
         }
+
+        function test_find()
+        {
+            //Arrange
+            $name = "Bullfrog Brewery";
+            $location = "Somewhere in Williamsport";
+            $link = "www.bullfrogbrewing.com";
+            $test_brewery = new Brewery ($name, $location, $link);
+            $test_brewery->save();
+
+            $name = "Yards Brewing Co.";
+            $location = "Philthadone";
+            $link = "www.makebeer.com";
+            $test_brewery2 = new Brewery ($name, $location, $link);
+            $test_brewery2->save();
+
+            //Act
+            $result = Brewery::find($test_brewery->getId());
+
+            //Assert
+            $this->assertEquals($test_brewery, $result);
+        }
     }
 
  ?>
