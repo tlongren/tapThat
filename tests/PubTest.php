@@ -153,10 +153,6 @@
             $this->assertEquals($test_pub, $result[0]);
         }
 
-        //update test
-
-        //delete test
-
         //get all test
         function test_getAll()
         {
@@ -204,7 +200,6 @@
             $this->assertEquals([], $result);
         }
 
-
         //find test
         function test_find()
         {
@@ -226,6 +221,50 @@
 
             //Assert
             $this->assertEquals($test_pub2, $result);
+        }
+
+        function test_update()
+        {
+            //Arrange
+            $name = "Paddys";
+            $location = "462 Over There Way";
+            $link = "www.paddyspub.com";
+            $test_pub = new Pub($name, $location, $link);
+            $test_pub->save();
+
+            $column_to_update = "name";
+            $new_info = "Peggy Suze Booze";
+
+            //Act
+            $test_pub->update($column_to_update, $new_info);
+
+            //Assert
+            $result = Pub::getAll();
+            $this->assertEquals($new_info, $result[0]->getName());
+
+        }
+
+        function test_delete()
+        {
+            //Arrange
+            $name = "Paddys";
+            $location = "462 Over There Way";
+            $link = "www.paddyspub.com";
+            $test_pub = new Pub($name, $location, $link);
+            $test_pub->save();
+
+            $name2 = "Moon & Raven";
+            $location2 = "42 Williams St.";
+            $link2 = "www.moonraven.com";
+            $test_pub2 = new Pub($name, $location, $link);
+            $test_pub2->save();
+
+            //Act
+            $test_pub->delete();
+
+            //Assert
+            $result = Pub::getAll();
+            $this->assertEquals([$test_pub2], $result);
         }
     }
 
