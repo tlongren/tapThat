@@ -53,7 +53,8 @@
         //database methods
         function save()
         {
-
+            $GLOBALS['DB']->exec("INSERT INTO breweries (name, location, link) VALUES ('{$this->getName()}', '{$this->getLocation()}', '{$this->getLink()}');");
+            $this->id = $GLOBALS['DB']->lastInsertId();
         }
 
         function update()
@@ -70,17 +71,27 @@
         //static methods
         static function getAll()
         {
-
+            $breweries_query = $GLOBALS['DB']->query("SELECT * FROM breweries;");
+            $all_breweries = array();
+            foreach ($breweries_query as $brewery) {
+                $name = $brewery['name'];
+                $location = $brewery['location'];
+                $link = $brewery['link'];
+                $id = $brewery['id'];
+                $new_brewery = new Brewery($name, $location, $link, $id);
+                array_push($all_breweries, $new_brewery);
+            }
+            return $all_breweries;
         }
 
         static function deleteAll()
         {
-
+            $GLOBALS['DB']->exec("DELETE FROM breweries;");
         }
 
         static function find()
         {
-            
+
         }
     }
 
