@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Compiled source #
 ###################
 *.com
@@ -39,3 +40,8 @@ Thumbs.db
 # Silex and Twig #
 ##################
 vendor
+=======
+/vendor
+.DS_Store
+.Trashes
+>>>>>>> b63ba97f331bea3825e0e3a07ac448a0b1ef0e98
