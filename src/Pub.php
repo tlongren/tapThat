@@ -68,7 +68,9 @@
             $GLOBALS['DB']->exec("DELETE FROM pubs WHERE id = {$this->getId()};");
         }
 
-        //class interaction methods (on tap, beers_drunks)
+        //class interaction methods
+        //addBeer
+        //getBeers
 
 
         //static methods
