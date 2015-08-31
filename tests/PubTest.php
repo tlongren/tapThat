@@ -333,6 +333,46 @@
             $result = $test_pub->getBeers();
             $this->assertEquals([$test_beer, $test_beer2], $result);
         }
+
+        function test_deleteBeer()
+        {
+            //Arrange
+            $name = "Paddys";
+            $location = "462 Over There Way";
+            $link = "www.paddyspub.com";
+            $test_pub = new Pub($name, $location, $link);
+            $test_pub->save();
+
+            $id = null;
+            $name = "Lip Blaster";
+            $type = "IPA";
+            $abv = 4.2;
+            $ibu = 10;
+            $region = "Pacific Northwest";
+            $brewery_id = 1;
+            $test_beer = new Beer($id, $name, $type, $abv, $ibu, $region, $brewery_id);
+            $test_beer->save();
+
+            $id = null;
+            $name = "Hip Hops";
+            $type = "Pale Ale";
+            $abv = 3.2;
+            $ibu = 4;
+            $region = "South Central LA";
+            $brewery_id = 2;
+            $test_beer2 = new Beer($id, $name, $type, $abv, $ibu, $region, $brewery_id);
+            $test_beer2->save();
+
+            $test_pub->addBeer($test_beer);
+            $test_pub->addBeer($test_beer2);
+
+            //Act
+            $test_pub->deleteBeer($test_beer);
+
+            //Assert
+            $result = $test_pub->getBeers();
+            $this->assertEquals([$test_beer2], $result);
+        }
     }
 
 ?>

@@ -78,6 +78,11 @@
             );");
         }
 
+        function deleteBeer($beer)
+        {
+            $GLOBALS['DB']->exec("DELETE FROM on_tap WHERE pub_id = {$this->getId()} AND beer_id = {$beer->getId()};");
+        }
+
         function getBeers()
         {
             $beers_query = $GLOBALS['DB']->query(
