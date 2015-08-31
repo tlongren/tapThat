@@ -272,20 +272,20 @@
         function test_addBeer()
         {
             //Arrange
-            $pub_name = "Paddys";
+            $name = "Paddys";
             $location = "462 Over There Way";
             $link = "www.paddyspub.com";
-            $test_pub = new Pub($pub_name, $location, $link);
+            $test_pub = new Pub($name, $location, $link);
             $test_pub->save();
 
             $id = null;
-            $beer_name = "Lip Blaster";
+            $name = "Lip Blaster";
             $type = "IPA";
             $abv = 4.2;
             $ibu = 10;
             $region = "Pacific Northwest";
             $brewery_id = 1;
-            $test_beer = new Beer($id, $beer_name, $type, $abv, $ibu, $region, $brewery_id);
+            $test_beer = new Beer($id, $name, $type, $abv, $ibu, $region, $brewery_id);
             $test_beer->save();
 
             //Act
@@ -299,20 +299,20 @@
         function test_getBeers()
         {
             //Arrange
-            $pub_name = "Paddys";
+            $name = "Paddys";
             $location = "462 Over There Way";
             $link = "www.paddyspub.com";
-            $test_pub = new Pub($pub_name, $location, $link);
+            $test_pub = new Pub($name, $location, $link);
             $test_pub->save();
 
             $id = null;
-            $beer_name = "Lip Blaster";
+            $name = "Lip Blaster";
             $type = "IPA";
             $abv = 4.2;
             $ibu = 10;
             $region = "Pacific Northwest";
             $brewery_id = 1;
-            $test_beer = new Beer($id, $beer_name, $type, $abv, $ibu, $region, $brewery_id);
+            $test_beer = new Beer($id, $name, $type, $abv, $ibu, $region, $brewery_id);
             $test_beer->save();
 
             $id = null;

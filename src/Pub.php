@@ -69,9 +69,37 @@
         }
 
         //class interaction methods
-        //addBeer
-        //getBeers
+        function addBeer($new_beer)
+        {
+            $GLOBALS['DB']->exec("INSERT INTO on_tap (pub_id, beer_id) VALUES (
+                {$this->getId()},
+                {$new_beer->getId()}
+            );");
+        }
 
+        function getBeers()
+        {
+            $beers_query = $GLOBALS['DB']->query(
+                "SELECT beers.* FROM
+                    pubs JOIN on_tap ON (on_tap.pub_id = pubs.id)
+                         JOIN beers  ON (on_tap.beer_id = beers.id)
+                WHERE pubs.id = {$this->getId()};
+                ");
+
+            $matching_beers = array();
+            foreach ($beers_query as $beer) {
+                $id = $beer['id'];
+                $name = $beer['name'];
+                $type = $beer['type'];
+                $abv = $beer['abv'];
+                $ibu = $beer['ibu'];
+                $region = $beer['region'];
+                $brewery_id = $beer['brewery_id'];
+                $new_beer = new Beer($id, $name, $type, $abv, $ibu, $region, $brewery_id);
+                array_push ($matching_beers, $new_beer);
+            }
+            return $matching_beers;
+        }
 
         //static methods
         static function getAll()
