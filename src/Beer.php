@@ -77,16 +77,37 @@
 
         function save()
         {
-
+            $GLOBALS['DB']->exec("INSERT INTO beers (name, type, abv, region, ibu, brewery_id) VALUES (
+                '{$this->getName()}',
+                '{$this->getType()}',
+                {$this->getAbv()},
+                '{$this->getRegion()}',
+                {$this->getIbu()},
+                {$this->getBreweryId()});");
+            $this->id = $GLOBALS['DB']->lastInsertId();
         }
 
         static function getAll()
         {
-
+            $returned_beers = $GLOBALS['DB']->query("SELECT * FROM beers;");
+            $beers = array();
+            foreach ($returned_beers as $beer) {
+                $id = $beer['id'];
+                $name = $beer['name'];
+                $type = $beer['type'];
+                $abv = $beer['abv'];
+                $ibu = $beer['ibu'];
+                $region = $beer['region'];
+                $brewery_id = $beer['brewery_id'];
+                $new_beer = new Beer($id, $name, $type, $abv, $ibu, $region, $brewery_id);
+                array_push($beers, $new_beer);
+            }
+            return $beers;
         }
+
         static function deleteAll()
         {
-            
+            $GLOBALS['DB']->exec("DELETE FROM beers;");
         }
     }
 

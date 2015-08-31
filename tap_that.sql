@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost:8080
--- Generation Time: Aug 31, 2015 at 07:09 PM
+-- Generation Time: Aug 31, 2015 at 10:14 PM
 -- Server version: 5.6.26
 -- PHP Version: 5.6.11
 
@@ -32,9 +32,9 @@ CREATE TABLE IF NOT EXISTS `beers` (
   `id` int(11) NOT NULL,
   `name` varchar(255) DEFAULT NULL,
   `type` varchar(255) DEFAULT NULL,
-  `abv` decimal(10,0) DEFAULT NULL,
+  `abv` decimal(3,1) DEFAULT NULL,
   `region` varchar(255) DEFAULT NULL,
-  `ibu` decimal(10,0) DEFAULT NULL,
+  `ibu` int(10) DEFAULT NULL,
   `brewery_id` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
