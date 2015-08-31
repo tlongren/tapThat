@@ -64,6 +64,58 @@
         {
             return $this->id;
         }
+
+        function save()
+        {
+            $GLOBALS['DB']->exec("INSERT INTO drunks (name, date_of_birth, location, email) VALUES ('{$this->getName()}', '{$this->getDateOfBirth()}', '{$this->getLocation()}', '{$this->getEmail()}')");
+            $this->id = $GLOBALS['DB']->lastInsertId();
+        }
+
+        function update($column_to_update, $new_information)
+        {
+            $GLOBALS['DB']->exec("UPDATE drunks SET {$column_to_update} = '{$new_information}' WHERE id = {$this->getId()}");
+        }
+
+        function delete()
+        {
+            $GLOBALS['DB']->exec("DELETE FROM drunks WHERE id = {$this->getId()}");
+        }
+
+        ////////////Static functions///////////////////
+
+        static function getAll()
+        {
+            $returned_drunks = $GLOBALS['DB']->query("SELECT * FROM drunks");
+            $drunks = array();
+            foreach($returned_drunks as $drunk) {
+                $name = $drunk['name'];
+                $date_of_birth = $drunk['date_of_birth'];
+                $location = $drunk['location'];
+                $email = $drunk['email'];
+                $id = $drunk['id'];
+                $new_drunk = new Drunk($name, $date_of_birth, $location, $email, $id);
+                array_push($drunks, $new_drunk);
+            }
+            return $drunks;
+        }
+
+        static function deleteAll()
+        {
+            $GLOBALS['DB']->exec("DELETE FROM drunks");
+        }
+
+        static function find($search_id)
+        {
+            $found_drunk = null;
+            $returned_drunks = Drunk::getALL();
+            foreach($returned_drunks as $drunk) {
+                $id = $drunk->getid();
+                if($id == $search_id) {
+                    $found_drunk = $drunk;
+                }
+            }
+            return $found_drunk;
+        }
     }
 
  ?>
