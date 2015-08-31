@@ -16,7 +16,7 @@
     {
         protected function tearDown()
         {
-            //Pub::deleteAll();
+            Pub::deleteAll();
         }
 
         function test_getName()
@@ -135,6 +135,77 @@
             //Assert
             $this->assertEquals($id, $result);
         }
+
+        //save test
+        function test_save()
+        {
+            //Arrange
+            $name = "Paddys";
+            $location = "462 Over There Way";
+            $link = "www.paddyspub.com";
+            $test_pub = new Pub($name, $location, $link);
+
+            //Act
+            $test_pub->save();
+
+            //Assert
+            $result = Pub::getAll();
+            $this->assertEquals($test_pub, $result[0]);
+        }
+
+        //update test
+
+        //delete test
+
+        //get all test
+        function test_getAll()
+        {
+            //Arrange
+            $name = "Paddys";
+            $location = "462 Over There Way";
+            $link = "www.paddyspub.com";
+            $test_pub = new Pub($name, $location, $link);
+            $test_pub->save();
+
+            $name2 = "Moon & Raven";
+            $location2 = "42 Williams St.";
+            $link2 = "www.moonraven.com";
+            $test_pub2 = new Pub($name, $location, $link);
+            $test_pub->save();
+
+            //Act
+            $result = Pub::getAll();
+
+            //Assert
+            $this->assertEquals([$test_pub, $test_pub2], $result);
+        }
+
+        //delete all test
+        function test_deleteAll()
+        {
+            //Arrange
+            $name = "Paddys";
+            $location = "462 Over There Way";
+            $link = "www.paddyspub.com";
+            $test_pub = new Pub($name, $location, $link);
+            $test_pub->save();
+
+            $name2 = "Moon & Raven";
+            $location2 = "42 Williams St.";
+            $link2 = "www.moonraven.com";
+            $test_pub2 = new Pub($name, $location, $link);
+            $test_pub->save();
+
+            //Act
+            Pub::deleteAll();
+
+            //Assert
+            $result = Pub::getAll();
+            $this->assertEquals([], $result);
+        }
+
+
+        //find test
     }
 
 ?>
