@@ -17,37 +17,37 @@
         //getters and setters
         function getName()
         {
-
+            return $this->name;
         }
 
         function setName($new_name)
         {
-
+            $this->name = (string) $new_name;
         }
 
         function getLocation()
         {
-
+            return $this->location;
         }
 
         function setLocation($new_location)
         {
-
+            $this->location = (string) $new_location;
         }
 
         function getLink()
         {
-
+            return $this->link;
         }
 
         function setLink($new_link)
         {
-
+            $this->location = (string) $new_link;
         }
 
         function getId()
         {
-
+            return $this->id;
         }
 
         //database methods
