@@ -42,7 +42,7 @@
 
         function setLink($new_link)
         {
-            $this->location = (string) $new_link;
+            $this->link = (string) $new_link;
         }
 
         function getId()
