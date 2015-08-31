@@ -66,6 +66,7 @@
         function delete()
         {
             $GLOBALS['DB']->exec("DELETE FROM pubs WHERE id = {$this->getId()};");
+            $GLOBALS['DB']->exec("DELETE FROM on_tap WHERE id = {$this->getId()};");
         }
 
         //class interaction methods
@@ -120,6 +121,7 @@
         static function deleteAll()
         {
             $GLOBALS['DB']->exec("DELETE FROM pubs;");
+            $GLOBALS['DB']->exec("DELETE FROM on_tap;");
         }
 
         static function find($search_id)
