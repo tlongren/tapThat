@@ -87,6 +87,15 @@
             $this->id = $GLOBALS['DB']->lastInsertId();
         }
 
+        function update($field, $new_value)
+        {
+            if (is_string($new_value)) {
+                $GLOBALS['DB']->exec("UPDATE beers SET {$field} = '{$new_value}' WHERE id = {$this->getId()};");
+            } else {
+                $GLOBALS['DB']->exec("UPDATE beers SET {$field} = {$new_value} WHERE id = {$this->getId()};");
+            }
+        }
+
         static function getAll()
         {
             $returned_beers = $GLOBALS['DB']->query("SELECT * FROM beers;");

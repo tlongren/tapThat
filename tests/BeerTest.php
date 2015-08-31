@@ -132,7 +132,42 @@
             $this->assertEquals($test_beer, $result);
         }
 
-        
+        function testUpdate()
+        {
+            //Arrange
+            $id = null;
+            $name = "Lip Blaster";
+            $type = "IPA";
+            $abv = 4.2;
+            $ibu = 10;
+            $region = "Pacific Northwest";
+            $brewery_id = 1;
+            $test_beer = new Beer($id, $name, $type, $abv, $ibu, $region, $brewery_id);
+            $test_beer->save();
+
+            $new_name = "Hip Hops";
+            $new_type = "Pale Ale";
+            $new_abv = 3.2;
+            $new_ibu = 4;
+            $new_region = "South Central LA";
+            $new_brewery_id = 2;
+
+            //Act
+            $test_beer->update("name", $new_name);
+            $test_beer->update("type", $new_type);
+            $test_beer->update("abv", $new_abv);
+            $test_beer->update("ibu", $new_ibu);
+            $test_beer->update("region", $new_region);
+            $test_beer->update("brewery_id", $new_brewery_id);
+
+            //Assert
+            $all_beers = Beer::getAll();
+            $result = new Beer($test_beer->getId(), $new_name, $new_type, $new_abv, $new_ibu, $new_region, $new_brewery_id);
+            $test_beer = $all_beers[0];
+            $this->assertEquals($test_beer, $result);
+        }
+
+
 
     }
 
