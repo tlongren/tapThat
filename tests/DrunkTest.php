@@ -259,6 +259,28 @@
             $this->assertEquals([], $result);
         }
 
+        function testUpdate()
+        {
+            //Arrange
+            $name = "Person 1";
+            $date_of_birth = "1988-03-04";
+            $location = "Portland, OR";
+            $email = "email@email.com";
+            $id = 1;
+            $test_drunk = new Drunk($name, $date_of_birth, $location, $email, $id);
+            $test_drunk->save();
+
+            $new_name = "Person 2";
+
+            //Act
+            $test_drunk->update("name", $new_name);
+            $result = Drunk::getALL();
+
+
+            //Assert
+            $this->assertEquals($new_name, $result[0]->getName());
+        }
+
     }
 
  ?>

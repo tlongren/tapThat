@@ -71,6 +71,11 @@
             $this->id = $GLOBALS['DB']->lastInsertId();
         }
 
+        function update($column_to_update, $new_information)
+        {
+            $GLOBALS['DB']->exec("UPDATE drunks SET {$column_to_update} = '{$new_information}' WHERE id = {$this->getId()}");
+        }
+
         ////////////Static functions///////////////////
 
         static function getAll()
