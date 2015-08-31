@@ -58,18 +58,59 @@
             $this->id = $GLOBALS['DB']->lastInsertId();
         }
 
-        function update()
+        function update($column_to_update, $new_info)
         {
-
+            $GLOBALS['DB']->exec("UPDATE pubs SET {$column_to_update} = '{$new_info}' WHERE id = {$this->getId()};");
         }
 
         function delete()
         {
-
+            $GLOBALS['DB']->exec("DELETE FROM pubs WHERE id = {$this->getId()};");
+            $GLOBALS['DB']->exec("DELETE FROM on_tap WHERE id = {$this->getId()};");
         }
 
-        //class interaction methods (on tap, beers_drunks)
+        //class interaction methods
+        function addBeer($new_beer)
+        {
+            $GLOBALS['DB']->exec("INSERT INTO on_tap (pub_id, beer_id) VALUES (
+                {$this->getId()},
+                {$new_beer->getId()}
+            );");
+        }
 
+        function deleteBeer($beer)
+        {
+            $GLOBALS['DB']->exec("DELETE FROM on_tap WHERE pub_id = {$this->getId()} AND beer_id = {$beer->getId()};");
+        }
+
+        function getBeers()
+        {
+            $beers_query = $GLOBALS['DB']->query(
+                "SELECT beers.* FROM
+                    pubs JOIN on_tap ON (on_tap.pub_id = pubs.id)
+                         JOIN beers  ON (on_tap.beer_id = beers.id)
+                WHERE pubs.id = {$this->getId()};
+                ");
+
+            $matching_beers = array();
+            foreach ($beers_query as $beer) {
+                $id = $beer['id'];
+                $name = $beer['name'];
+                $type = $beer['type'];
+                $abv = $beer['abv'];
+                $ibu = $beer['ibu'];
+                $region = $beer['region'];
+                $brewery_id = $beer['brewery_id'];
+                $new_beer = new Beer($id, $name, $type, $abv, $ibu, $region, $brewery_id);
+                array_push ($matching_beers, $new_beer);
+            }
+            return $matching_beers;
+        }
+
+        function deleteAllBeers()
+        {
+            $GLOBALS['DB']->exec("DELETE FROM on_tap WHERE pub_id = {$this->getId()};");
+        }
 
         //static methods
         static function getAll()
@@ -90,6 +131,7 @@
         static function deleteAll()
         {
             $GLOBALS['DB']->exec("DELETE FROM pubs;");
+            $GLOBALS['DB']->exec("DELETE FROM on_tap;");
         }
 
         static function find($search_id)
