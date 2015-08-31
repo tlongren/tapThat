@@ -51,6 +51,40 @@
             //Assert
             $this->assertEquals($new_name, $result);
         }
+
+
+            function test_getLocation()
+            {
+                //Arrange
+                $name = "Paddys";
+                $location = "462 Over There Way";
+                $link = "www.paddyspub.com";
+                $test_pub = new Pub($name, $location, $link);
+
+                //Act
+                $result = $test_pub->getLocation();
+
+                //Assert
+                $this->assertEquals($location, $result);
+            }
+
+            function test_setLocation()
+            {
+                //Arrange
+                $name = "Paddys";
+                $location = "462 Over There Way";
+                $link = "www.paddyspub.com";
+                $test_pub = new Pub($name, $location, $link);
+
+                $new_location = "The Bar";
+
+                //Act
+                $test_pub->setLocation($new_location);
+                $result = $test_pub->getLocation();
+
+                //Assert
+                $this->assertEquals($new_location, $result);
+            }
     }
 
 ?>
