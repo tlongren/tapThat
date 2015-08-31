@@ -87,10 +87,6 @@
             $GLOBALS['DB']->exec("INSERT INTO beers_drunks (beer_id, drunk_id) VALUES ({$beer->getId()}, {$this->getId()})");
         }
 
-        function deleteBeer($beer)
-        {
-            $GLOBALS['DB']->exec("DELETE FROM beers_drunks WHERE beer_id = {$beer->getId()} AND drunk_id = {$this->getId()}");
-        }
 
         function getBeers()
         {
@@ -110,6 +106,16 @@
             return $beers;
         }
 
+        function deleteBeer($beer)
+        {
+            $GLOBALS['DB']->exec("DELETE FROM beers_drunks WHERE beer_id = {$beer->getId()} AND drunk_id = {$this->getId()}");
+        }
+
+        function deleteAllBeers()
+        {
+            $GLOBALS['DB']->exec("DELETE FROM beers_drunks WHERE drunk_id = {$this->getId()}");
+        }
+        
         ////////////Static functions///////////////////
 
         static function getAll()
