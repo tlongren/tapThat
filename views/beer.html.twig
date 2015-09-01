@@ -14,7 +14,9 @@
 {% if pubs is not empty %}
     <h2>{{ beer.getName }} is available at these fine establishments</h2>
     {% for pub in pubs %}
-        <p>{{ pub.getName }}</p>
+        <ul>
+            <li><a href="/pub_info/{{ pub.getId }}">{{ pub.getName }}</a></li>
+        </ul>
     {% endfor %}
 {% else %}
     <p>{{ beer.getName }} isn't on tap anywhere at the moment.</p>
