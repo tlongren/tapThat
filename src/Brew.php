@@ -91,6 +91,11 @@
             }
         }
 
+        function delete()
+        {
+            $GLOBALS['DB']->exec("DELETE FROM brews WHERE id = {$this->id}");
+        }
+
         //////////////Static Functions//////////////////
 
         static function getAll()
