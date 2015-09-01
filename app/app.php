@@ -31,11 +31,11 @@
         $all_beers = Beer::getAll();
         $matching_beer = null;
         foreach ($all_beers as $beer) {
-            if ($_POST['beer'] == $beer->getName()) {
+            if ($_GET['beer'] == $beer->getName()) {
                 $matching_beer = $beer;
             }
         }
-        return $app['twig']->render('beer.html.twig', array('beer' => $matching_beer))
+        return $app['twig']->render('beer.html.twig', array('beer' => $matching_beer));
     });
 
     return $app;

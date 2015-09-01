@@ -2,11 +2,15 @@
 {% embed "header.html.twig" %}
 {% endembed %}
 
+<h1>{{ beer.getName }} On Tap</h1>
+    <ul>
+        <li>Type: {{ beer.getType }}</li>
+        <li>ABV: {{ beer.getAbv }}</li>
+        <li>IBU: {{ beer.getIbu }}</li>
+        <li>Region: {{ beer.getRegion }}</li>
+    </ul>
 
-
-
-
-
+    
 
 
 
