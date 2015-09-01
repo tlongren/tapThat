@@ -15,14 +15,14 @@
     $password = 'root';
     $DB = new PDO($server, $username, $password);
 
-    $app->register(new Silex\Provider\TwigServiceProvider(), array (
+    $app->register(new Silex\Provider\TwigServiceProvider(), array(
         'twig.path' => __DIR__.'/../views'
     ));
 
     use Symfony\Component\HttpFoundation\Request;
     Request::enableHttpMethodParameterOverride();
 
-    $app->('/', function() use ($app) {
+    $app->get('/', function() use ($app) {
         return $app['twig']->render('index.html.twig');
     });
 
