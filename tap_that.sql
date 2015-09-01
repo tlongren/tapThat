@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Sep 01, 2015 at 01:01 AM
+-- Generation Time: Sep 01, 2015 at 09:01 PM
 -- Server version: 5.5.42
 -- PHP Version: 5.6.10
 
@@ -60,7 +60,10 @@ CREATE TABLE `breweries` (
 CREATE TABLE `brews` (
   `beer_id` int(11) NOT NULL,
   `drunk_id` int(11) NOT NULL,
-  `id` int(11) NOT NULL
+  `id` int(11) NOT NULL,
+  `pub_id` int(11) DEFAULT NULL,
+  `beer_rating` decimal(3,1) DEFAULT NULL,
+  `brew_date` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
