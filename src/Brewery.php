@@ -64,7 +64,7 @@
 
         function delete()
         {
-
+            $GLOBALS['DB']->exec("DELETE FROM breweries WHERE id = {$this->getId()};");
         }
         //Class integration methods?
 
