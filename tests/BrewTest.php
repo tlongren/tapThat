@@ -63,7 +63,7 @@
 
             //Act
             $result = Brew::getAll();
-            
+
 
             //Assert
             $this->assertEquals([$new_brew, $new_brew2], $result);
@@ -94,6 +94,33 @@
 
             //Assert
             $this->assertEquals([], $result);
+        }
+
+        function testFind()
+        {
+            //Arrange
+            $beer_id = 1;
+            $drunk_id = 1;
+            $pub_id = 1;
+            $beer_rating = 4.5;
+            $date = "2015-04-03";
+            $new_brew = new Brew($beer_id, $drunk_id, $pub_id, $beer_rating, $date);
+            $new_brew->save();
+
+            $beer_id2 = 2;
+            $drunk_id2 = 2;
+            $pub_id2 = 2;
+            $beer_rating2 = 4.5;
+            $date2 = "2015-04-03";
+            $new_brew2 = new Brew($beer_id2, $drunk_id2, $pub_id2, $beer_rating2, $date2);
+            $new_brew2->save();
+
+            //Act
+            $result = Brew::find($new_brew2->getId());
+
+
+            //Assert
+            $this->assertEquals($new_brew2, $result);
         }
 
     }

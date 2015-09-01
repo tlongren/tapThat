@@ -106,6 +106,19 @@
             $GLOBALS['DB']->exec("DELETE FROM brews");
         }
 
+        static function find($search_id)
+        {
+            $brews = Brew::getAll();
+            $found_brew = null;
+            foreach($brews as $brew) {
+                $brew_id = $brew->getId();
+                if ($brew_id == $search_id) {
+                    $found_brew = $brew;
+                }
+            }
+            return $found_brew;
+        }
+
 
     }
 
