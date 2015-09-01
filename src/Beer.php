@@ -159,6 +159,11 @@
             return $pubs;
         }
 
+        function getRating()
+        {
+            
+        }
+
     }
 
 ?>
