@@ -9,7 +9,7 @@
     require_once 'src/Pub.php';
     require_once 'src/Drunk.php';
 
-    $server = 'mysql:host=localhost:8889;dbname=tap_that_test';
+    $server = 'mysql:host=localhost;dbname=tap_that_test';
     $username = 'root';
     $password = 'root';
     $DB = new PDO($server, $username, $password);
@@ -86,7 +86,7 @@
             $beer_rating2 = 4.5;
             $brew_date2 = "2015-04-03";
             $new_brew2 = new Brew($beer_id2, $drunk_id2, $pub_id2, $beer_rating2, $brew_date2);
-            $new_brew2->save;
+            $new_brew2->save();
 
             //Act
             Brew::deleteAll();
