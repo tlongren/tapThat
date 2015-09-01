@@ -19,6 +19,8 @@
         protected function tearDown()
         {
             Brewery::deleteAll();
+            Beer::deleteAll();
+            Pub::deleteAll();
         }
 
         function test_getName()
@@ -162,32 +164,33 @@
             $this->assertEquals([$test_brewery2], $result);
         }
 
-        function test_addBeer()
-        {
-            //Arrange
-            $name = "Yards Brewing Co.";
-            $location = "Philthadone";
-            $link = "www.makebeer.com";
-            $test_brewery = new Brewery ($name, $location, $link);
-            $test_brewery->save();
-
-            $id = null;
-            $name = "Lip Blaster";
-            $type = "IPA";
-            $abv = 4.2;
-            $ibu = 10;
-            $region = "Pacific Northwest";
-            $brewery_id = 1;
-            $test_beer = new Beer($id, $name, $type, $abv, $ibu, $region, $brewery_id);
-            $test_beer->save();
-
-            //Act
-            $test_brewery->addBeer($test_beer);
-
-            //Assert
-            $result = $test_brewery->getBeers();
-            $this->assertEquals($test_beer, $result[0]);
-        }
+        // function test_addBeer()
+        // {
+        //     //Arrange
+        //     $name = "Yards Brewing Co.";
+        //     $location = "Philthadone";
+        //     $link = "www.makebeer.com";
+        //     $id = 1;
+        //     $test_brewery = new Brewery ($name, $location, $link, $id);
+        //     $test_brewery->save();
+        //
+        //     $id = null;
+        //     $name = "Lip Blaster";
+        //     $type = "IPA";
+        //     $abv = 4.2;
+        //     $ibu = 10;
+        //     $region = "Pacific Northwest";
+        //     // $brewery_id = 1;
+        //     $test_beer = new Beer($id, $name, $type, $abv, $ibu, $region, $brewery_id);
+        //     $test_beer->save();
+        //
+        //     //Act
+        //     $test_brewery->addBeer($test_beer);
+        //
+        //     //Assert
+        //     $result = $test_brewery->getBeers();
+        //     $this->assertEquals($test_beer, $result[0]);
+        // }
 
         function test_getBeers()
         {
@@ -204,7 +207,7 @@
             $abv = 4.2;
             $ibu = 10;
             $region = "Pacific Northwest";
-            $brewery_id = 1;
+            $brewery_id = $test_brewery->getId();
             $test_beer = new Beer($id, $name, $type, $abv, $ibu, $region, $brewery_id);
             $test_beer->save();
 
@@ -213,12 +216,9 @@
             $abv = 3.2;
             $ibu = 4;
             $region = "South Central LA";
-            $brewery_id = 1;
+            $brewery_id = $test_brewery->getId();
             $test_beer2 = new Beer($id, $name, $type, $abv, $ibu, $region, $brewery_id);
             $test_beer2->save();
-
-            $test_brewery->addBeer($test_beer);
-            $test_brewery->addBeer($test_beer2);
 
             //Act
             $result = $test_brewery->getBeers();
@@ -227,44 +227,44 @@
             $this->assertEquals([$test_beer, $test_beer2], $result);
         }
 
-        function test_deleteBeer()
-        {
-            //Arrange
-            $name = "Yards Brewing Co.";
-            $location = "Philthadone";
-            $link = "www.makebeer.com";
-            $test_brewery = new Brewery ($name, $location, $link);
-            $test_brewery->save();
-
-            $id = null;
-            $name = "Lip Blaster";
-            $type = "IPA";
-            $abv = 4.2;
-            $ibu = 10;
-            $region = "Pacific Northwest";
-            $brewery_id = 1;
-            $test_beer = new Beer($id, $name, $type, $abv, $ibu, $region, $brewery_id);
-            $test_beer->save();
-
-            $name = "Hip Hops";
-            $type = "Pale Ale";
-            $abv = 3.2;
-            $ibu = 4;
-            $region = "South Central LA";
-            $brewery_id = 1;
-            $test_beer2 = new Beer($id, $name, $type, $abv, $ibu, $region, $brewery_id);
-            $test_beer2->save();
-
-            $test_brewery->addBeer($test_beer);
-            $test_brewery->addBeer($test_beer2);
-
-            //Act
-            $test_brewery->deleteBeer($test_beer);
-
-            //Assert
-            $result = $test_brewery->getBeers();
-            $this->assertEquals([$test_beer2], $result);
-        }
+        // function test_deleteBeer()
+        // {
+        //     //Arrange
+        //     $name = "Yards Brewing Co.";
+        //     $location = "Philthadone";
+        //     $link = "www.makebeer.com";
+        //     $test_brewery = new Brewery ($name, $location, $link);
+        //     $test_brewery->save();
+        //
+        //     $id = null;
+        //     $name = "Lip Blaster";
+        //     $type = "IPA";
+        //     $abv = 4.2;
+        //     $ibu = 10;
+        //     $region = "Pacific Northwest";
+        //     $brewery_id = 1;
+        //     $test_beer = new Beer($id, $name, $type, $abv, $ibu, $region, $brewery_id);
+        //     $test_beer->save();
+        //
+        //     $name = "Hip Hops";
+        //     $type = "Pale Ale";
+        //     $abv = 3.2;
+        //     $ibu = 4;
+        //     $region = "South Central LA";
+        //     $brewery_id = 1;
+        //     $test_beer2 = new Beer($id, $name, $type, $abv, $ibu, $region, $brewery_id);
+        //     $test_beer2->save();
+        //
+        //     $test_brewery->addBeer($test_beer);
+        //     $test_brewery->addBeer($test_beer2);
+        //
+        //     //Act
+        //     $test_brewery->deleteBeer($test_beer);
+        //
+        //     //Assert
+        //     $result = $test_brewery->getBeers();
+        //     $this->assertEquals([$test_beer2], $result);
+        // }
     }
 
  ?>

@@ -66,7 +66,45 @@
         {
             $GLOBALS['DB']->exec("DELETE FROM breweries WHERE id = {$this->getId()};");
         }
-        //Class integration methods?
+
+        //Beer class integration methods
+
+        // shouldn't need this, can just call Beer save method
+        // function addBeer($new_beer)
+        // {
+        //     $GLOBALS['DB']->exec("INSERT INTO beers (name, type, abv, region, ibu, brewery_id) VALUES (
+        //         '{$new_beer->getName()}',
+        //         '{$new_beer->getType()}',
+        //         {$new_beer->getAbv()},
+        //         '{$new_beer->getRegion()}',
+        //         {$new_beer->getIbu()},
+        //         {$this->getId()});");
+        //         $new_beer->id = $GLOBALS['DB']->lastInsertId();
+        // }
+
+        function getBeers()
+        {
+            $beers_query = $GLOBALS['DB']->query("SELECT * FROM beers WHERE brewery_id = {$this->getId()};");
+
+            $matching_beers = array();
+            foreach ($beers_query as $beer) {
+                $id = $beer['id'];
+                $name = $beer['name'];
+                $type = $beer['type'];
+                $abv = $beer['abv'];
+                $region = $beer['region'];
+                $ibu = $beer['ibu'];
+                $brewery_id = $beer['brewery_id'];
+                $new_beer = new Beer($id, $name, $type, $abv, $ibu, $region, $brewery_id);
+                array_push ($matching_beers, $new_beer);
+            }
+            return $matching_beers;
+        }
+
+        function deleteBeer()
+        {
+
+        }
 
         //static methods
         static function getAll()
