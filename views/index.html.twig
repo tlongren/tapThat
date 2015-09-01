@@ -1,104 +1,36 @@
-<html>
-    <head>
-        <link rel="stylesheet" href="css/bootstrap.css" type='text/css' media='all'>
-        <link rel="stylesheet" href="css/styles.css" type='text/css' media='all'>
-        <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
-        <script src="js/bootstrap.min.js"></script>
-        <title>tapThat</title>
-    </head>
-    <body>
+
+{% embed "header.html.twig" %}
+{% endembed %}
 
 
-<!-- NAVBAR -->
-        <nav class="navbar navbar-default">
-          <div class="container-fluid">
-            <!-- Brand and toggle get grouped for better mobile display -->
-            <div class="navbar-header">
-              <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-              </button>
-              <a class="navbar-brand" href="#">tap That</a>
-            </div>
-
-            <!-- Collect the nav links, forms, and other content for toggling -->
-            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-              <ul class="nav navbar-nav">
-                <li><a href="#">Pub Login</a></li>
-                <!-- <li><a href="#">Link</a></li>
-                <li class="dropdown">
-                  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
-                  <ul class="dropdown-menu">
-                    <li><a href="#">Action</a></li>
-                    <li><a href="#">Another action</a></li>
-                    <li><a href="#">Something else here</a></li>
-                    <li role="separator" class="divider"></li>
-                    <li><a href="#">Separated link</a></li>
-                    <li role="separator" class="divider"></li>
-                    <li><a href="#">One more separated link</a></li>
-                  </ul> -->
-                </li>
-              </ul>
-              <form class="navbar-form navbar-right" action="/signin">
-                <div class="form-group">
-                  <input id="username" name="username" type="text" class="form-control" placeholder="Username">
-                </div>
-                <div class="form-group">
-                  <input id="password" name="password" type="text" class="form-control" placeholder="Password">
-                </div>
-                <button type="submit" class="btn btn-default">Login</button>
-              </form>
-              <!-- <ul class="nav navbar-nav navbar-right">
-                <li><a href="#">Link</a></li>
-                <li class="dropdown">
-                  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
-                  <ul class="dropdown-menu">
-                    <li><a href="#">Action</a></li>
-                    <li><a href="#">Another action</a></li>
-                    <li><a href="#">Something else here</a></li>
-                    <li role="separator" class="divider"></li>
-                    <li><a href="#">Separated link</a></li>
-                  </ul>
-                </li>
-              </ul> -->
-            </div><!-- /.navbar-collapse -->
-          </div><!-- /.container-fluid -->
-        </nav>
-
-
-        <div class="container">
-            <div class="jumbotron">
-                <h2>Search taps</h2>
-                <form action="/search_beers">
-                    <div class="form-group">
-                        <input id="beer" name="beer" type="text" class="form-control" placeholder="Search for a beer...">
-                    </div>
-                    <button type="submit" class="btn right btn-warning">Search</button>
-                </form>
-            </div>
-
-            <div class="bottom"></div>
-
-            <div class="center">
-                <div class="row">
-                    <div class="col-md-4">
-                        <h3>Local Favorites</h3>
-                    </div>
-                    <div class="col-md-4">
-                        <h3>Recently Tapped</h3>
-                    </div>
-                    <div class="col-md-4">
-                        <h3>Rare Taps</h3>
-                    </div>
-                </div>
-            </div>
+<div class="jumbotron">
+    <h2>Search taps</h2>
+    <form action="/search_beers">
+        <div class="input-group">
+            <input id="beer" name="beer" type="text" class="form-control" placeholder="Search for a beer...">
+            <span class="input-group-btn">
+                <button type="submit" class="btn right btn-warning">Search</button>
+            </span>
         </div>
+    </form>
+</div>
+
+<div class="bottom"></div>
+
+<div class="center">
+    <div class="row">
+        <div class="col-md-4">
+            <h3>Local Favorites</h3>
+        </div>
+        <div class="col-md-4">
+            <h3>Recently Tapped</h3>
+        </div>
+        <div class="col-md-4">
+            <h3>Rare Taps</h3>
+        </div>
+    </div>
+</div>
 
 
-
-
-
-    </body>
-</html>
+{% embed "footer.html.twig" %}
+{% endembed %}
