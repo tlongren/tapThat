@@ -118,6 +118,49 @@
             //Assert
             $this->assertEquals($test_brewery, $result);
         }
+
+        function test_update()
+        {
+            //Arrange
+            $name = "Bullfrog Brewery";
+            $location = "Somewhere in Williamsport";
+            $link = "www.bullfrogbrewing.com";
+            $test_brewery = new Brewery ($name, $location, $link);
+            $test_brewery->save();
+
+            $column_to_update = "name";
+            $new_info = "Corgi Craft Coolers";
+
+            //Act
+            $test_brewery->update($column_to_update, $new_info);
+
+            //Assert
+            $result = Brewery::getAll();
+            $this->assertEquals($new_info, $result[0]->getName());
+        }
+
+        function test_delete()
+        {
+            //Arrange
+            $name = "Bullfrog Brewery";
+            $location = "Somewhere in Williamsport";
+            $link = "www.bullfrogbrewing.com";
+            $test_brewery = new Brewery ($name, $location, $link);
+            $test_brewery->save();
+
+            $name = "Yards Brewing Co.";
+            $location = "Philthadone";
+            $link = "www.makebeer.com";
+            $test_brewery2 = new Brewery ($name, $location, $link);
+            $test_brewery2->save();
+
+            //Act
+            $test_brewery->delete();
+
+            //Assert
+            $result = Brewery::getAll();
+            $this->assertEquals([$test_brewery2], $result);
+        }
     }
 
  ?>
