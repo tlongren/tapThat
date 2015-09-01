@@ -137,7 +137,6 @@
             return $found_beer;
         }
 
-
         //Inter-class methods
         function getPubs()
         {

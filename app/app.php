@@ -44,8 +44,13 @@
         $pub = Pub::find($id);
         $beers_on_tap = $pub->getBeers();
         return $app['twig']->render('pub_info.html.twig', array('pub' => $pub, 'beers' => $beers_on_tap));
+    });
 
-
+    //takes user back to page with specific beer and all pubs serving that beer linked
+    $app->get('/beer/{id}', function($id) use ($app) {
+        $beer = Beer::find($id);
+        $pubs_on_tap = $beer->getPubs();
+        return $app['twig']->render('beer.html.twig', array('beer' => $beer, 'pubs' => $pubs_on_tap));
     });
 
     return $app;
