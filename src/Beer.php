@@ -137,6 +137,28 @@
             return $found_beer;
         }
 
+
+        //Inter-class methods
+        function getPubs()
+        {
+            $query = $GLOBALS['DB']->query(
+                "SELECT pubs.* FROM
+                    beers JOIN on_tap ON (beers.id = on_tap.beer_id)
+                    JOIN pubs ON (on_tap.pub_id = pubs.id)
+                    WHERE beers.id = {$this->getId()};
+                ");
+            $pubs = array();
+            foreach ($query as $pub) {
+                $name = $pub['name'];
+                $location = $pub['location'];
+                $link = $pub['link'];
+                $id = $pub['id'];
+                $new_pub = new Pub($name, $location, $link, $id);
+                array_push($pubs, $new_pub);
+            }
+            return $pubs;
+        }
+
     }
 
 ?>

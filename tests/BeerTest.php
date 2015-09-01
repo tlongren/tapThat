@@ -213,7 +213,7 @@
 
             $name = "The Outback Steakhouse";
             $location = "300NW Outback Steak Rd";
-            $link = "http://www.outback.com/"
+            $link = "http://www.outback.com/";
             $test_pub = new Pub($name, $location, $link);
             $test_pub->save();
 
@@ -223,7 +223,7 @@
             $result = $test_beer->getPubs();
 
             //Assert
-            $this->assertEquals([$test_pub], $result)
+            $this->assertEquals([$test_pub], $result);
         }
 
 
