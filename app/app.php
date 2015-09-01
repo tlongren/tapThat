@@ -35,7 +35,8 @@
                 $matching_beer = $beer;
             }
         }
-        return $app['twig']->render('beer.html.twig', array('beer' => $matching_beer));
+        $pubs_on_tap = $matching_beer->getPubs();
+        return $app['twig']->render('beer.html.twig', array('beer' => $matching_beer, 'pubs' => $pubs_on_tap));
     });
 
     return $app;
