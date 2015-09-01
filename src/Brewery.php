@@ -101,9 +101,9 @@
             return $matching_beers;
         }
 
-        function deleteBeer()
+        function deleteBeer($beer)
         {
-
+            $GLOBALS['DB']->exec("DELETE FROM beers WHERE id = {$beer->getId()} AND brewery_id = {$this->getId()};");
         }
 
         //static methods
