@@ -7,6 +7,7 @@
 
     require_once 'src/Beer.php';
     require_once 'src/Pub.php';
+    require_once 'src/Brew.php';
 
     $server = 'mysql:host=localhost;dbname=tap_that_test';
     $username = 'root';
@@ -226,7 +227,7 @@
             $this->assertEquals([$test_pub], $result);
         }
 
-        function getRating()
+        function test_getRating()
         {
             //Arrange
             $id = null;
@@ -239,7 +240,7 @@
             $test_beer = new Beer($id, $name, $type, $abv, $ibu, $region, $brewery_id);
             $test_beer->save();
 
-            $beer_id = 1;
+            $beer_id = $test_beer->getId();
             $drunk_id = 1;
             $pub_id = 1;
             $beer_rating = 2;
@@ -247,7 +248,7 @@
             $new_brew = new Brew($beer_id, $drunk_id, $pub_id, $beer_rating, $brew_date);
             $new_brew->save();
 
-            $beer_id2 = 2;
+            $beer_id2 = $test_beer->getId();
             $drunk_id2 = 2;
             $pub_id2 = 2;
             $beer_rating2 = 4;

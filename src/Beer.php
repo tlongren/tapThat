@@ -161,9 +161,9 @@
 
         function getRating()
         {
-            
+            $statement = $GLOBALS['DB']->query("SELECT AVG(beer_rating) AS average FROM brews WHERE beer_id = {$this->getId()};");
+            $average = $statement->fetchColumn();
+            return $average;
         }
-
     }
-
 ?>
