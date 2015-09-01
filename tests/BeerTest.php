@@ -8,7 +8,7 @@
     require_once 'src/Beer.php';
     require_once 'src/Pub.php';
 
-    $server = 'mysql:host=localhost:8889;dbname=tap_that_test';
+    $server = 'mysql:host=localhost;dbname=tap_that_test';
     $username = 'root';
     $password = 'root';
     $DB = new PDO($server, $username, $password);
@@ -226,6 +226,42 @@
             $this->assertEquals([$test_pub], $result);
         }
 
+        function getRating()
+        {
+            //Arrange
+            $id = null;
+            $name = "Lip Blaster";
+            $type = "IPA";
+            $abv = 4.2;
+            $ibu = 10;
+            $region = "Pacific Northwest";
+            $brewery_id = 1;
+            $test_beer = new Beer($id, $name, $type, $abv, $ibu, $region, $brewery_id);
+            $test_beer->save();
+
+            $beer_id = 1;
+            $drunk_id = 1;
+            $pub_id = 1;
+            $beer_rating = 2;
+            $brew_date = "2015-04-03";
+            $new_brew = new Brew($beer_id, $drunk_id, $pub_id, $beer_rating, $brew_date);
+            $new_brew->save();
+
+            $beer_id2 = 2;
+            $drunk_id2 = 2;
+            $pub_id2 = 2;
+            $beer_rating2 = 4;
+            $brew_date2 = "2015-04-03";
+            $new_brew2 = new Brew($beer_id2, $drunk_id2, $pub_id2, $beer_rating2, $brew_date2);
+            $new_brew2->save();
+
+            //Act
+            $result = $test_beer->getRating();
+
+            //Assert
+            $this->assertEquals(3, $result);
+
+        }
 
 
     }

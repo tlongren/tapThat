@@ -10,7 +10,7 @@
     require_once "src/Beer.php";
 
 
-    $server = 'mysql:host=localhost:8889;dbname=tap_that_test';
+    $server = 'mysql:host=localhost;dbname=tap_that_test';
     $username = 'root';
     $password = 'root';
     $DB = new PDO($server, $username, $password);
@@ -289,14 +289,14 @@
             $date_of_birth = "1988-03-04";
             $location = "Portland, OR";
             $email = "email@email.com";
-            $test_drunk = new Drunk($name, $date_of_birth, $location, $email, $id);
+            $test_drunk = new Drunk($name, $date_of_birth, $location, $email);
             $test_drunk->save();
 
             $name2 = "Person 1";
             $date_of_birth2 = "1988-03-04";
             $location2 = "Portland, OR";
             $email2 = "email@email.com";
-            $test_drunk2 = new Drunk($name2, $date_of_birth2, $location2, $email2, $id2);
+            $test_drunk2 = new Drunk($name2, $date_of_birth2, $location2, $email2);
             $test_drunk2->save();
 
             //Act
@@ -314,14 +314,14 @@
             $date_of_birth = "1988-03-04";
             $location = "Portland, OR";
             $email = "email@email.com";
-            $test_drunk = new Drunk($name, $date_of_birth, $location, $email, $id);
+            $test_drunk = new Drunk($name, $date_of_birth, $location, $email);
             $test_drunk->save();
 
             $name2 = "Person 1";
             $date_of_birth2 = "1988-03-04";
             $location2 = "Portland, OR";
             $email2 = "email@email.com";
-            $test_drunk2 = new Drunk($name2, $date_of_birth2, $location2, $email2, $id2);
+            $test_drunk2 = new Drunk($name2, $date_of_birth2, $location2, $email2);
             $test_drunk2->save();
 
             //Act
@@ -341,7 +341,7 @@
             $location = "Portland, OR";
             $email = "email@email.com";
             $id = 1;
-            $test_drunk = new Drunk($name, $date_of_birth, $location, $email, $id);
+            $test_drunk = new Drunk($name, $date_of_birth, $location, $email);
             $test_drunk->save();
 
             $id2 = null;
@@ -354,8 +354,8 @@
             $test_beer = new Beer($id2, $name2, $type, $abv, $ibu, $region, $brewery_id);
             $test_beer->save();
 
-            $id23 = null;
-            $name23 = "Lip Blaster";
+            $id3 = null;
+            $name3 = "Lip Blaster";
             $type3 = "IPA";
             $abv3 = 4.2;
             $ibu3 = 10;
@@ -395,8 +395,8 @@
             $test_beer = new Beer($id2, $name2, $type, $abv, $ibu, $region, $brewery_id);
             $test_beer->save();
 
-            $id23 = null;
-            $name23 = "Lip Blaster";
+            $id3 = null;
+            $name3 = "Lip Blaster";
             $type3 = "IPA";
             $abv3 = 4.2;
             $ibu3 = 10;
