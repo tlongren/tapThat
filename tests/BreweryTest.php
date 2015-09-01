@@ -9,7 +9,7 @@
     require_once "src/Beer.php";
     require_once "src/Brewery.php";
 
-    $server = "mysql:host=localhost;dbname=tap_that_test";
+    $server = "mysql:host=localhost:8889;dbname=tap_that_test";
     $username = "root";
     $password = "root";
     $DB = new PDO($server, $username, $password);
