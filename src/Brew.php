@@ -2,20 +2,20 @@
 
     class Brew
     {
-        private beer_id;
-        private drunk_id;
-        private pub_id;
-        private beer_rating;
-        private date;
-        private id;
+        private $beer_id;
+        private $drunk_id;
+        private $pub_id;
+        private $beer_rating;
+        private $brew_date;
+        private $id;
 
-        function __construct($beer_id, $drunk_id, $pub_id, $beer_rating, $date, $id = null)
+        function __construct($beer_id, $drunk_id, $pub_id, $beer_rating, $brew_date, $id = null)
         {
             $this->beer_id = $beer_id;
             $this->drunk_id = $drunk_id;
             $this->pub_id = $pub_id;
             $this->beer_rating = $beer_rating;
-            $this->date = $date;
+            $this->brew_date = $brew_date;
             $this->id = $id;
         }
 
@@ -61,19 +61,49 @@
             $this->beer_rating = $new_beer_rating;
         }
 
-        function getDate()
+        function getBrewDate()
         {
-            return $this->date;
+            return $this->brew_date;
         }
 
-        function setDate($new_date)
+        function setBrewDate($new_brew_date)
         {
-            $this->date = $new_date;
+            $this->date = $new_brew_date;
         }
 
         function getId()
         {
             return $this->id;
+        }
+
+        function save()
+        {
+            $GLOBALS['DB']->exec("INSERT INTO brews (beer_id, drunk_id, pub_id, beer_rating, brew_date) VALUES ({$this->beer_id}, {$this->drunk_id}, {$this->pub_id}, {$this->beer_rating}, '{$this->brew_date}') ");
+            $this->id = $GLOBALS['DB']->lastInsertId();
+        }
+
+        //////////////Static Functions//////////////////
+
+        static function getAll()
+        {
+            $returned_brews = $GLOBALS['DB']->query("SELECT * FROM brews");
+            $brews = array();
+            foreach($returned_brews as $brew) {
+                $beer_id = $brew['beer_id'];
+                $drunk_id = $brew['drunk_id'];
+                $pub_id = $brew['pub_id'];
+                $beer_rating = $brew['beer_rating'];
+                $brew_date = $brew['brew_date'];
+                $id = $brew['id'];
+                $new_brew = new Brew($beer_id, $drunk_id, $pub_id, $beer_rating, $brew_date, $id);
+                array_push($brews, $new_brew);
+            }
+            return $brews;
+        }
+
+        static function deleteAll()
+        {
+            $GLOBALS['DB']->exec("DELETE FROM brews");
         }
 
 
