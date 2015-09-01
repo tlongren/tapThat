@@ -82,6 +82,15 @@
             $this->id = $GLOBALS['DB']->lastInsertId();
         }
 
+        function update($column_to_update, $new_info)
+        {
+            if (is_string($new_info)) {
+                $GLOBALS['DB']->exec("UPDATE brews SET {$column_to_update} = '{$new_info}' WHERE id = {$this->id}");
+            } else {
+                $GLOBALS['DB']->exec("UPDATE brews SET {$column_to_update} = {$new_info} WHERE id = {$this->id}");
+            }
+        }
+
         //////////////Static Functions//////////////////
 
         static function getAll()

@@ -29,8 +29,8 @@
             $drunk_id = 1;
             $pub_id = 1;
             $beer_rating = 4.5;
-            $date = "2015-04-03";
-            $new_brew = new Brew($beer_id, $drunk_id, $pub_id, $beer_rating, $date);
+            $brew_date = "2015-04-03";
+            $new_brew = new Brew($beer_id, $drunk_id, $pub_id, $beer_rating, $brew_date);
 
             //Act
             $new_brew->save();
@@ -49,16 +49,16 @@
             $drunk_id = 1;
             $pub_id = 1;
             $beer_rating = 4.5;
-            $date = "2015-04-03";
-            $new_brew = new Brew($beer_id, $drunk_id, $pub_id, $beer_rating, $date);
+            $brew_date = "2015-04-03";
+            $new_brew = new Brew($beer_id, $drunk_id, $pub_id, $beer_rating, $brew_date);
             $new_brew->save();
 
             $beer_id2 = 2;
             $drunk_id2 = 2;
             $pub_id2 = 2;
             $beer_rating2 = 4.5;
-            $date2 = "2015-04-03";
-            $new_brew2 = new Brew($beer_id2, $drunk_id2, $pub_id2, $beer_rating2, $date2);
+            $brew_date2 = "2015-04-03";
+            $new_brew2 = new Brew($beer_id2, $drunk_id2, $pub_id2, $beer_rating2, $brew_date2);
             $new_brew2->save();
 
             //Act
@@ -76,16 +76,16 @@
             $drunk_id = 1;
             $pub_id = 1;
             $beer_rating = 4.5;
-            $date = "2015-04-03";
-            $new_brew = new Brew($beer_id, $drunk_id, $pub_id, $beer_rating, $date);
+            $brew_date = "2015-04-03";
+            $new_brew = new Brew($beer_id, $drunk_id, $pub_id, $beer_rating, $brew_date);
             $new_brew->save();
 
             $beer_id2 = 2;
             $drunk_id2 = 2;
             $pub_id2 = 2;
             $beer_rating2 = 4.5;
-            $date2 = "2015-04-03";
-            $new_brew2 = new Brew($beer_id2, $drunk_id2, $pub_id2, $beer_rating2, $date2);
+            $brew_date2 = "2015-04-03";
+            $new_brew2 = new Brew($beer_id2, $drunk_id2, $pub_id2, $beer_rating2, $brew_date2);
             $new_brew2->save;
 
             //Act
@@ -103,16 +103,16 @@
             $drunk_id = 1;
             $pub_id = 1;
             $beer_rating = 4.5;
-            $date = "2015-04-03";
-            $new_brew = new Brew($beer_id, $drunk_id, $pub_id, $beer_rating, $date);
+            $brew_date = "2015-04-03";
+            $new_brew = new Brew($beer_id, $drunk_id, $pub_id, $beer_rating, $brew_date);
             $new_brew->save();
 
             $beer_id2 = 2;
             $drunk_id2 = 2;
             $pub_id2 = 2;
             $beer_rating2 = 4.5;
-            $date2 = "2015-04-03";
-            $new_brew2 = new Brew($beer_id2, $drunk_id2, $pub_id2, $beer_rating2, $date2);
+            $brew_date2 = "2015-04-03";
+            $new_brew2 = new Brew($beer_id2, $drunk_id2, $pub_id2, $beer_rating2, $brew_date2);
             $new_brew2->save();
 
             //Act
@@ -121,6 +121,27 @@
 
             //Assert
             $this->assertEquals($new_brew2, $result);
+        }
+
+        function testUpdate()
+        {
+            //Arrange
+            $beer_id = 1;
+            $drunk_id = 1;
+            $pub_id = 1;
+            $beer_rating = 4.5;
+            $brew_date = "2015-04-03";
+            $new_brew = new Brew($beer_id, $drunk_id, $pub_id, $beer_rating, $brew_date);
+            $new_brew->save();
+
+            //Act
+            $new_brew->update('brew_date', '2011-09-01');
+            $result = Brew::getAll();
+
+
+            //Assert
+            $this->assertEquals($result[0]->getBrewDate(), "2011-09-01");
+
         }
 
     }
