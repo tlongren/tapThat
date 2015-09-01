@@ -39,6 +39,15 @@
         return $app['twig']->render('beer.html.twig', array('beer' => $matching_beer, 'pubs' => $pubs_on_tap));
     });
 
+    //takes user to a page for a specific pub from a clicked link
+    $app->get('/pub_info/{id}', function($id) use ($app) {
+        $pub = Pub::find($id);
+        $beers_on_tap = $pub->getBeers();
+        return $app['twig']->render('pub_info.html.twig', array('pub' => $pub, 'beers' => $beers_on_tap));
+
+
+    });
+
     return $app;
 
 ?>

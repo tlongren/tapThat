@@ -1,0 +1,22 @@
+
+{% embed "header.html.twig" %}
+{% endembed %}
+
+<h1>{{ pub.getName }}</h1>
+    <p>{{ pub.getLocation }}</p>
+    <p>{{ pub.getLink }}</p>
+
+{% if beers is not empty %}
+    <h2>Here are all our beers</h2>
+    {% for beer in beers %}
+        <ul>
+            <li><a href="/beer/{{ beer.getId }}">{{ beer.getName }}</a></li>
+        </ul>
+    {% endfor %}
+{% else %}
+    <h4>Nothing on tap here.</h4>
+{% endif %}
+
+
+{% embed "footer.html.twig" %}
+{% endembed %}
