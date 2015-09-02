@@ -25,9 +25,15 @@
     width: 50px;
 }
 
+.social-icon {
+    height: 30px;
+    width: 30px;
+}
+
 .jumbotron {
     background-color: rgba(220,220,220,.50);
 }
+
 
 .container {
     background-image: url("/img/logowithback.png");
