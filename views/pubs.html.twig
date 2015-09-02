@@ -26,13 +26,13 @@
                     {% for pub in pubs %}
                         <tr>
                             <td>
-                                {{pub.getName}}
+                                <a href='/pub/{{pub.getName}}'>{{pub.getName}}</a>
                             </td>
                             <td>
                                 {{pub.getLocation}}
                             </td>
                             <td>
-                                {{pub.getLink}}
+                                <a href="{{pub.getLink}}">{{pub.getLink}}</a>
                             </td>
                         </tr>
                     {% endfor %}

@@ -46,6 +46,12 @@
         return $app['twig']->render("pubs.html.twig", array('pubs' => $all_pubs));
     });
 
+    //takes a user to a page listing all Breweries
+    $app->get('/breweries', function() use ($app) {
+        $all_breweries = Brewery::getAll();
+        return $app['twig']->render('breweries.html.twig', array('breweries' =>$all_breweries));
+    });
+
     //takes user to a page for a specific brewery
     $app->get('/brewery_info/{id}', function($id) use ($app) {
         $brewery = Brewery::find($id);
