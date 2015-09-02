@@ -16,6 +16,12 @@
     text-align: right;
 }
 
+.input-group-btn {
+    vertical-align: top;
+}
+
+
+
 
 /*******************/
 /*Autocomplete CSS*/
@@ -24,18 +30,17 @@
     background-color: white;
 }
 #keyword {
-	width: 200px;
+	width: 100%;
 	font-size: 1em;
 }
 
 #results {
-	width: 204px;
+	width: 100%;
 	display: absolute;
 	border: 1px solid #c0c0c0;
     border-top: 0px;
     border-bottom-left-radius: .5em;
     border-bottom-right-radius: .5em;
-
     display: none;
 }
 
