@@ -11,7 +11,7 @@
 
     $app['debug'] = true;
 
-    $server = 'mysql:host=localhost:8889;dbname=tap_that';
+    $server = 'mysql:host=localhost;dbname=tap_that';
     $username = 'root';
     $password = 'root';
     $DB = new PDO($server, $username, $password);
@@ -43,7 +43,7 @@
     //takes user to a page listing all pubs
     $app->get('/pubs', function() use ($app) {
         $all_pubs = Pub::getAll();
-        return $app['twig']->render("pubs.html.twig", array('all_pubs' => $all_pubs));
+        return $app['twig']->render("pubs.html.twig", array('pubs' => $all_pubs));
     });
 
     //takes user to a page for a specific brewery

@@ -65,7 +65,7 @@
     min-height: 50%;
 }
 
-.table_beers {
+.table_beers{
     max-height: 250px;
     overflow-y: auto;
 }
@@ -75,9 +75,10 @@
     text-align: center;
 }
 
-.table_beers > h2 {
-    border-bottom: 1px solid #D3D3D3;
+.beers_table h2{
+    text-align: center;
 }
+
 =======
 
 /*******************/
