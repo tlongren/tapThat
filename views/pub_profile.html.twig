@@ -17,18 +17,18 @@
 <div class='row'>
     <div class='col-sm-6 center'>
         <h3>List of Beers</h3>
-            <ul class="list-unstyled">
+            <ul class="pub-beer-list">
                 {% for beer in beers %}
                     <li>
                         <ul class="list-unstlyed list-inline">
-                            <li>
+                            <li class="pub-beers">
                                 <a href="/beer/{{ beer.getId }}">{{beer.getName}}</a>
                             </li>
-                            <li>
+                            <li class="pub-beer-delete">
                                 <form action="/beer/{{ beer.getId }}/delete" method="post">
                                     <input id='pub_id' name='pub_id' type='hidden' value='{{ pub.getId() }}'>
                                     <input name="_method" type="hidden" value="delete">
-                                    <button type="submit" class="btn btn-danger">Delete</button>
+                                    <button type="submit" class="delete-button">delete</button>
                                 </form>
                             </li>
                         </ul>
@@ -36,7 +36,7 @@
                 {% endfor %}
             </ul>
     </div>
-    <div class='col-sm-6'>
+    <div class='col-sm-6 beer-search'>
         <h4>Search for a beer</h4>
 
 
