@@ -24,7 +24,8 @@
     Request::enableHttpMethodParameterOverride();
 
     $app->get('/', function() use ($app) {
-        return $app['twig']->render('index.html.twig');
+        $all_beers = Beer::getAll();
+        return $app['twig']->render('index.html.twig', array('all_beers' => $all_beers, 'all_breweries' => Brewery::getAll(), 'all_pubs' => Pub::getAll()));
     });
 
     //grab search results and return matching beer if exact match
