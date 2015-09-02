@@ -99,7 +99,15 @@
                 $pub->addBeer($beer);
             }
         }
-        return $app['twig']->render('pub_profile.html.twig', array ('pub' => $pub, 'beers' => $all_beers));
+        return $app['twig']->render('pub_profile.html.twig', array ('pub' => $pub, 'beers' => $pub->getBeers()));
+    });
+
+    //delete a single beer from a pub profile
+    $app->delete("/beer/{id}/delete", function($id) use ($app) {
+        $beer = Beer::find($id);
+        $pub = Pub::find($_POST['pub_id']);
+        $pub->deleteBeer($beer);
+        return $app['twig']->render('pub_profile.html.twig', array('pub' => $pub, 'beers' => $pub->getBeers()));
     });
 
     return $app;

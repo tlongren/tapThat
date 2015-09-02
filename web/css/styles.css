@@ -77,3 +77,32 @@
 .table_beers > h2 {
     border-bottom: 1px solid #D3D3D3;
 }
+=======
+
+/*******************/
+/*Pub Profile Page*/
+/*****************/
+
+.pub-beer-list {
+    list-style: none;
+}
+
+.delete-button {
+    font-size: 8px;
+}
+
+.pub-beers {
+    float: left;
+    clear: both;
+}
+
+.pub-beer-delete {
+    float: right;
+}
+
+/*in case we want to put search back on right*/
+/*@media (max-width: 750px) {*/
+    .beer-search {
+        clear: both;
+    }
+/*}*/
