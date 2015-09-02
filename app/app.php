@@ -71,7 +71,7 @@
         return $app['twig']->render('pub.html.twig', array('all_pubs' => Pub::getAll()));
     });
 
-    $app->get('pub/{id}', function($id) use ($app) {
+    $app->get('/pub/{id}', function($id) use ($app) {
         $pub = Pub::find($id);
         return $app['twig']->render('pub_profile.html.twig', array('pub' => $pub, 'beers' => $pub->getBeers()));
     });
