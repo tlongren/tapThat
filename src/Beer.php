@@ -137,6 +137,18 @@
             return $found_beer;
         }
 
+        static function findByName($beer_name)
+        {
+            $found_beer = null;
+            $beers = Beer::getAll();
+            foreach ($beers as $beer) {
+                if ($beer->getName() == $beer_name) {
+                    $found_beer = $beer;
+                }
+            }
+            return $found_beer;
+        }
+
         //Inter-class methods
         function getPubs()
         {

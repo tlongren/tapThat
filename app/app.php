@@ -11,7 +11,7 @@
 
     $app['debug'] = true;
 
-    $server = 'mysql:host=localhost;dbname=tap_that';
+    $server = 'mysql:host=localhost:8889;dbname=tap_that';
     $username = 'root';
     $password = 'root';
     $DB = new PDO($server, $username, $password);
@@ -39,6 +39,12 @@
         $pubs_on_tap = $matching_beer->getPubs();
         return $app['twig']->render('beer.html.twig', array('beer' => $matching_beer, 'pubs' => $pubs_on_tap));
     });
+    //takes user to a page for a specific brewery
+    $app->get('/brewery_info/{id}', function($id) use ($app) {
+        $brewery = Brewery::find($id);
+        $beers = $brewery->getBeers();
+        return $app['twig']->render('brewery_info.html.twig', array('brewery' => $brewery, 'beers' => $beers));
+    });
 
     //takes user to a page for a specific pub from a clicked link
     $app->get('/pub_info/{id}', function($id) use ($app) {
@@ -54,11 +60,13 @@
         return $app['twig']->render('beer.html.twig', array('beer' => $beer, 'pubs' => $pubs_on_tap));
     });
 
+    //takes pub user to a page where they can add a pub
     $app->get('/pub_login', function() use ($app) {
         $all_pubs = Pub::getAll();
         return $app['twig']->render('pub.html.twig', array('all_pubs' => $all_pubs));
     });
 
+    //posts the new pub to the pubs homepage
     $app->post('/pub_login', function() use ($app) {
         $name = $_POST['name'];
         $location = $_POST['location'];
@@ -68,14 +76,25 @@
         return $app['twig']->render('pub.html.twig', array('all_pubs' => Pub::getAll()));
     });
 
+    //deletes all the pubs
     $app->delete('/pub_login', function() use ($app) {
         Pub::deleteAll();
         return $app['twig']->render('pub.html.twig', array('all_pubs' => Pub::getAll()));
     });
 
+    //takes user to an individual's pub page
     $app->get('/pub/{id}', function($id) use ($app) {
         $pub = Pub::find($id);
         return $app['twig']->render('pub_profile.html.twig', array('pub' => $pub, 'beers' => $pub->getBeers()));
+    });
+
+    //allows user to add a particular beer to a particular pub
+    $app->post('/pub/{id}', function($id) use ($app) {
+        $pub = Pub::find($id);
+        $beer_name = $_POST['keyword'];
+        $beer = Beer::findByName($beer_name);
+        $pub->addBeer($beer);
+        return $app['twig']->render('pub_profile.html.twig', array ('pub' => $pub, 'beers' => $pub->getBeers()));
     });
 
     return $app;
