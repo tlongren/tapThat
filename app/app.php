@@ -11,7 +11,7 @@
 
     $app['debug'] = true;
 
-    $server = 'mysql:host=localhost;dbname=tap_that';
+    $server = 'mysql:host=localhost:8889;dbname=tap_that';
     $username = 'root';
     $password = 'root';
     $DB = new PDO($server, $username, $password);
@@ -39,6 +39,13 @@
         $pubs_on_tap = $matching_beer->getPubs();
         return $app['twig']->render('beer.html.twig', array('beer' => $matching_beer, 'pubs' => $pubs_on_tap));
     });
+
+    //takes user to a page listing all pubs
+    $app->get('/pubs', function() use ($app) {
+        $all_pubs = Pub::getAll();
+        return $app['twig']->render("pubs.html.twig", array('all_pubs' => $all_pubs));
+    });
+
     //takes user to a page for a specific brewery
     $app->get('/brewery_info/{id}', function($id) use ($app) {
         $brewery = Brewery::find($id);
@@ -99,15 +106,7 @@
                 $pub->addBeer($beer);
             }
         }
-        return $app['twig']->render('pub_profile.html.twig', array ('pub' => $pub, 'beers' => $pub->getBeers()));
-    });
-
-    //delete a single beer from a pub profile
-    $app->delete("/beer/{id}/delete", function($id) use ($app) {
-        $beer = Beer::find($id);
-        $pub = Pub::find($_POST['pub_id']);
-        $pub->deleteBeer($beer);
-        return $app['twig']->render('pub_profile.html.twig', array('pub' => $pub, 'beers' => $pub->getBeers()));
+        return $app['twig']->render('pub_profile.html.twig', array ('pub' => $pub, 'beers' => $all_beers));
     });
 
     return $app;
