@@ -94,9 +94,13 @@
         $beer_name = $_POST['keyword'];
         $beer = Beer::findByName($beer_name);
         $all_beers = $pub->getBeers();
-        foreach ($all_beers as $pub_beer) {
-            if ($beer != $pub_beer) {
-                $pub->addBeer($beer);
+        if (empty($all_beers)) {
+            $pub->addBeer($beer);
+        } else {
+            foreach ($all_beers as $pub_beer) {
+                if ($beer != $pub_beer) {
+                    $pub->addBeer($beer);
+                }
             }
         }
         return $app['twig']->render('pub_profile.html.twig', array ('pub' => $pub, 'beers' => $pub->getBeers()));
