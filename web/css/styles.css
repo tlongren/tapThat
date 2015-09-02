@@ -8,4 +8,14 @@
 
 .center {
     text-align: center;
+
+}
+
+.list-unstyled {
+    margin-top: 20px;
+    text-align: right;
+}
+
+#autocomplete {
+    background-color: white;
 }

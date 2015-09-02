@@ -1,0 +1,65 @@
+
+{% embed "header.html.twig" %}
+{% endembed %}
+
+
+<div class='row'>
+    <div class='col-sm-4'>
+        <h1>{{pub.getName}}</h1>
+    </div>
+    <div class='col-sm-2 col-sm-offset-6'>
+        <ul class='list-unstyled'>
+            <li>{{pub.getLocation}}</li>
+            <li><a href='{{pub.getLink}}'>{{pub.getLink}}</a></li>
+        </ul>
+    </div>
+</div>
+<div class='row'>
+    <div class='col-sm-6 center'>
+        <h3>List of Beers</h3>
+            <ul>
+                {% for beer in beers %}
+                    <li>{{beer.getName}}</li>
+                {% endfor %}
+            </ul>
+    </div>
+    <div class='col-sm-6'>
+        <h4>Search for beer</h4>
+        <input id="autocomplete" type="text" placeholder="Add a beer">
+
+        <script>
+            /*
+             * jQuery UI Autocomplete: Highlight Matched Text
+             * http://salman-w.blogspot.com/2013/12/jquery-ui-autocomplete-examples.html
+             */
+            var data = [
+                {{ all_beer_names }}
+            ];
+            $(function() {
+                function highlightText(text, $node) {
+                    var searchText = $.trim(text).toLowerCase(), currentNode = $node.get(0).firstChild, matchIndex, newTextNode, newSpanNode;
+                    while ((matchIndex = currentNode.data.toLowerCase().indexOf(searchText)) >= 0) {
+                        newTextNode = currentNode.splitText(matchIndex);
+                        currentNode = newTextNode.splitText(searchText.length);
+                        newSpanNode = document.createElement("span");
+                        newSpanNode.className = "highlight";
+                        currentNode.parentNode.insertBefore(newSpanNode, currentNode);
+                        newSpanNode.appendChild(newTextNode);
+                    }
+                }
+                $("#autocomplete").autocomplete({
+                    source: data
+                });
+            });
+        </script>
+
+    </div>
+
+
+</div>
+
+
+
+
+{% embed "footer.html.twig" %}
+{% endembed %}
