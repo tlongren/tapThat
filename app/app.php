@@ -55,6 +55,7 @@
     });
 
     $app->get('/pub_login', function() use ($app) {
+        $all_pubs = Pub::getAll();
         return $app['twig']->render('pub.html.twig', array('all_pubs' => $all_pubs));
     });
 
