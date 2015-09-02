@@ -11,7 +11,7 @@
 
     $app['debug'] = true;
 
-    $server = 'mysql:host=localhost:8889;dbname=tap_that';
+    $server = 'mysql:host=localhost;dbname=tap_that';
     $username = 'root';
     $password = 'root';
     $DB = new PDO($server, $username, $password);
@@ -93,8 +93,13 @@
         $pub = Pub::find($id);
         $beer_name = $_POST['keyword'];
         $beer = Beer::findByName($beer_name);
-        $pub->addBeer($beer);
-        return $app['twig']->render('pub_profile.html.twig', array ('pub' => $pub, 'beers' => $pub->getBeers()));
+        $all_beers = $pub->getBeers();
+        foreach ($all_beers as $pub_beer) {
+            if ($beer != $pub_beer) {
+                $pub->addBeer($beer);
+            }
+        }
+        return $app['twig']->render('pub_profile.html.twig', array ('pub' => $pub, 'beers' => $all_beers));
     });
 
     return $app;
