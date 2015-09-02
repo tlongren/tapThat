@@ -86,7 +86,6 @@
     $app->post('/pub/{id}', function($id) use ($app) {
         $pub = Pub::find($id);
         $beer = $_POST['keyword'];
-        var_dump($beer);
         $pub->addBeer($beer);
         return $app['twig']->render('pub_profile.html.twig', array ('pub' => $pub, 'beers' => $pub->getBeers()));
     });
