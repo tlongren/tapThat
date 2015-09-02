@@ -66,6 +66,7 @@
         return $app['twig']->render('pub.html.twig', array('all_pubs' => $all_pubs));
     });
 
+    //posts the new pub to the pubs homepage
     $app->post('/pub_login', function() use ($app) {
         $name = $_POST['name'];
         $location = $_POST['location'];
@@ -75,17 +76,31 @@
         return $app['twig']->render('pub.html.twig', array('all_pubs' => Pub::getAll()));
     });
 
+    //deletes all the pubs
     $app->delete('/pub_login', function() use ($app) {
         Pub::deleteAll();
         return $app['twig']->render('pub.html.twig', array('all_pubs' => Pub::getAll()));
     });
 
+    //takes user to an individual's pub page
     $app->get('/pub/{id}', function($id) use ($app) {
         $pub = Pub::find($id);
         return $app['twig']->render('pub_profile.html.twig', array('pub' => $pub, 'beers' => $pub->getBeers()));
     });
 
-    //
+    //allows user to add a particular beer to a particular pub
+    $app->post('/pub/{id}', function($id) use ($app) {
+        $pub = Pub::find($id);
+        $beer_name = $_POST['keyword'];
+        $beer = Beer::findByName($beer_name);
+        $all_beers = $pub->getBeers();
+        foreach ($all_beers as $pub_beer) {
+            if ($beer != $pub_beer) {
+                $pub->addBeer($beer);
+            }
+        }
+        return $app['twig']->render('pub_profile.html.twig', array ('pub' => $pub, 'beers' => $all_beers));
+    });
 
     return $app;
 ?>
