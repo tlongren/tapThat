@@ -11,9 +11,9 @@
 
     $app['debug'] = true;
 
-    $server = 'mysql:host=127.0.0.1;port=3306;dbname=tap_that';
+    $server = 'mysql:host=localhost;dbname=tap_that';
     $username = 'root';
-    $password = '';
+    $password = 'root';
     $DB = new PDO($server, $username, $password);
 
     $app->register(new Silex\Provider\TwigServiceProvider(), array(
@@ -28,7 +28,6 @@
     });
 
     $app->get('/pub_login', function() use ($app) {
-        $all_pubs = Pub::getAll();
         return $app['twig']->render('pub.html.twig', array('all_pubs' => $all_pubs));
     });
 
