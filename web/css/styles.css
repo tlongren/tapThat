@@ -13,3 +13,8 @@
 .jumbotron {
     min-height: 50%;
 }
+
+.table_beers {
+    max-height: 500px;
+    overflow-y: auto;
+}
