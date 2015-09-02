@@ -10,7 +10,7 @@
 
     $app['debug'] = true;
 
-    $server = 'mysql:host=localhost;dbname=tap_that';
+    $server = 'mysql:host=localhost:8889;dbname=tap_that';
     $username = 'root';
     $password = 'root';
     $DB = new PDO($server, $username, $password);
@@ -37,6 +37,12 @@
         }
         $pubs_on_tap = $matching_beer->getPubs();
         return $app['twig']->render('beer.html.twig', array('beer' => $matching_beer, 'pubs' => $pubs_on_tap));
+    });
+    //takes user to a page for a specific brewery
+    $app->get('/brewery_info/{id}', function($id) use ($app) {
+        $brewery = Brewery::find($id);
+        $beers = $brewery->getBeers();
+        return $app['twig']->render('brewery_info.html.twig', array('brewery' => $pub, 'beers' => $beers));
     });
 
     //takes user to a page for a specific pub from a clicked link
