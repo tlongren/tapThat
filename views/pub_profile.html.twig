@@ -23,8 +23,9 @@
                         <a href="/beer/{{ beer.getId }}">{{beer.getName}}</a>
 
                         <form action="/beer/{{ beer.getId }}/delete" method="post">
+                            <input id='pub_id' name='pub_id' type='hidden' value='{{ pub.getId() }}'>
                             <input name="_method" type="hidden" value="delete">
-                            <button type="submit" class="btn-danger">Delete</button>
+                            <button type="submit" class="btn btn-danger">Delete</button>
                         </form>
                     </li>
                 {% endfor %}
