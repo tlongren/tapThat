@@ -19,7 +19,14 @@
         <h3>List of Beers</h3>
             <ul>
                 {% for beer in beers %}
-                    <li>{{beer.getName}}</li>
+                    <li>
+                        <a href="/beer/{{ beer.getId }}">{{beer.getName}}</a>
+
+                        <form action="/beer/{{ beer.getId }}/delete" method="post">
+                            <input name="_method" type="hidden" value="delete">
+                            <button type="submit" class="btn-danger">Delete</button>
+                        </form>
+                    </li>
                 {% endfor %}
             </ul>
     </div>
