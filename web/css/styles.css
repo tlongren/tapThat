@@ -2,6 +2,10 @@
     float:right;
 }
 
+.left {
+    float: left;
+}
+
 .bottom {
     clear: both;
 }
@@ -31,17 +35,45 @@
 }
 
 .jumbotron {
-    background-color: rgba(220,220,220,.50);
+    background-color: rgba(220,220,220,.75);
 }
 
-
-.container {
+.background {
     background-image: url("/img/logowithback.png");
-    background-size: contain;
+    background-size: 400px 400px;
     background-repeat: no-repeat;
-    background-position: center;
 }
 
+.intro {
+    height: 200px;
+    margin-bottom: 15px;
+}
+
+.footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background-color: white;
+    z-index: 2;
+}
+
+.footer p {
+    margin-bottom: 0;
+}
+
+
+.table_beers {
+    max-height: 250px;
+    overflow-y: auto;
+}
+
+.table > thead > tr > th, .table > tbody > tr > th, .table > tfoot > tr > th, .table > thead > tr > td, .table > tbody > tr > td, .table > tfoot > tr > td {
+    border-top: 0px;
+}
+
+.table_beers > h2 {
+    border-bottom: 1px solid #D3D3D3;
+}
 
 /*******************/
 /*Autocomplete CSS*/
@@ -81,24 +113,6 @@
 	cursor: pointer;
 }
 
-.jumbotron {
-    min-height: 50%;
-}
-
-.table_beers {
-    max-height: 250px;
-    overflow-y: auto;
-}
-
-.table > thead > tr > th, .table > tbody > tr > th, .table > tfoot > tr > th, .table > thead > tr > td, .table > tbody > tr > td, .table > tfoot > tr > td {
-    border-top: 0px;
-}
-
-.table_beers > h2 {
-    border-bottom: 1px solid #D3D3D3;
-}
-=======
-
 /*******************/
 /*Pub Profile Page*/
 /*****************/
@@ -120,9 +134,14 @@
     float: right;
 }
 
-/*in case we want to put search back on right*/
-/*@media (max-width: 750px) {*/
-    .beer-search {
-        clear: both;
+.beer-search {
+    clear: both;
+}
+
+
+@media (max-width: 770px) {
+    .intro {
+        visibility: hidden;
+        height: 0px;
     }
-/*}*/
+}
