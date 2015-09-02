@@ -293,7 +293,5 @@
             //Assert
             $this->assertEquals($test_beer, $result);
         }
-
     }
-
 ?>

@@ -85,11 +85,11 @@
     //allows user to add a particular beer to a particular pub
     $app->post('/pub/{id}', function($id) use ($app) {
         $pub = Pub::find($id);
-        $beer = $_POST['keyword'];
+        $beer_name = $_POST['keyword'];
+        $beer = Beer::findByName($beer_name);
         $pub->addBeer($beer);
         return $app['twig']->render('pub_profile.html.twig', array ('pub' => $pub, 'beers' => $pub->getBeers()));
     });
-
 
     return $app;
 ?>
