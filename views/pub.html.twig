@@ -1,0 +1,24 @@
+{% embed "header.html.twig" %}
+{% endembed %}
+
+<h1>Pubs</h1>
+{% if all_pubs is not empty %}
+    <ul>
+        {% for pub in all_pubs %}
+            <li><a href='pub/{{pub.getId}}'>{{ pub.getName }}</a></li>
+        {% endfor %}
+    </ul>
+{% else %}
+    <p>No pubs listed yet!</p>
+{% endif %}
+
+{% embed "create_pub_form.html.twig" %}
+{% endembed %}
+
+<form action='/pub_login' method='post'>
+    <input name='_method' type='hidden' value='delete'>
+    <button type='submit' class='btn btn-danger'>Delete all pubs</button>
+</form>
+
+{% embed "footer.html.twig" %}
+{% endembed %}

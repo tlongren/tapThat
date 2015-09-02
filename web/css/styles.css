@@ -8,4 +8,50 @@
 
 .center {
     text-align: center;
+
+}
+
+.list-unstyled {
+    margin-top: 20px;
+    text-align: right;
+}
+
+
+/*******************/
+/*Autocomplete CSS*/
+/*****************/
+#autocomplete {
+    background-color: white;
+}
+#keyword {
+	width: 200px;
+	font-size: 1em;
+}
+
+#results {
+	width: 204px;
+	display: absolute;
+	border: 1px solid #c0c0c0;
+    border-top: 0px;
+    border-bottom-left-radius: .5em;
+    border-bottom-right-radius: .5em;
+
+    display: none;
+}
+
+#results .item {
+	padding: 3px;
+	font-family: Helvetica;
+	border-bottom: 1px solid #c0c0c0;
+}
+
+#results .item:last-child {
+	border-bottom: 0px;
+    border-bottom-left-radius: 2em;
+    border-bottom-right-radius: 1em;
+}
+
+#results .item:hover {
+	background-color: #f2f2f2;
+	cursor: pointer;
 }

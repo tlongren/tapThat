@@ -6,6 +6,7 @@
     require_once __DIR__."/../src/Drunk.php";
     require_once __DIR__."/../src/Pub.php";
 
+
     $app = new Silex\Application();
 
     $app['debug'] = true;
@@ -51,6 +52,28 @@
         $beer = Beer::find($id);
         $pubs_on_tap = $beer->getPubs();
         return $app['twig']->render('beer.html.twig', array('beer' => $beer, 'pubs' => $pubs_on_tap));
+
+    $app->get('/pub_login', function() use ($app) {
+        return $app['twig']->render('pub.html.twig', array('all_pubs' => $all_pubs));
+    });
+
+    $app->post('/pub_login', function() use ($app) {
+        $name = $_POST['name'];
+        $location = $_POST['location'];
+        $link = $_POST['link'];
+        $new_pub = new Pub($name, $location, $link);
+        $new_pub->save();
+        return $app['twig']->render('pub.html.twig', array('all_pubs' => Pub::getAll()));
+    });
+
+    $app->delete('/pub_login', function() use ($app) {
+        Pub::deleteAll();
+        return $app['twig']->render('pub.html.twig', array('all_pubs' => Pub::getAll()));
+    });
+
+    $app->get('pub/{id}', function($id) use ($app) {
+        $pub = Pub::find($id);
+        return $app['twig']->render('pub_profile.html.twig', array('pub' => $pub, 'beers' => $pub->getBeers()));
     });
 
     return $app;
