@@ -20,7 +20,21 @@
     vertical-align: top;
 }
 
+.icon {
+    height: 50px;
+    width: 50px;
+}
 
+.jumbotron {
+    background-color: rgba(220,220,220,.50);
+}
+
+.container {
+    background-image: url("/img/logowithback.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
 
 
 /*******************/
