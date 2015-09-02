@@ -24,35 +24,19 @@
             </ul>
     </div>
     <div class='col-sm-6'>
-        <h4>Search for beer</h4>
-        <input id="autocomplete" type="text" placeholder="Add a beer">
+        <h4>Search for a beer</h4>
 
-        <script>
-            /*
-             * jQuery UI Autocomplete: Highlight Matched Text
-             * http://salman-w.blogspot.com/2013/12/jquery-ui-autocomplete-examples.html
-             */
-            var data = [
-                {{ all_beer_names }}
-            ];
-            $(function() {
-                function highlightText(text, $node) {
-                    var searchText = $.trim(text).toLowerCase(), currentNode = $node.get(0).firstChild, matchIndex, newTextNode, newSpanNode;
-                    while ((matchIndex = currentNode.data.toLowerCase().indexOf(searchText)) >= 0) {
-                        newTextNode = currentNode.splitText(matchIndex);
-                        currentNode = newTextNode.splitText(searchText.length);
-                        newSpanNode = document.createElement("span");
-                        newSpanNode.className = "highlight";
-                        currentNode.parentNode.insertBefore(newSpanNode, currentNode);
-                        newSpanNode.appendChild(newTextNode);
-                    }
-                }
-                $("#autocomplete").autocomplete({
-                    source: data
-                });
-            });
-        </script>
 
+        <form action='/pub/{{ pub.getId }}' method='post'>
+                <div class='input-group'>
+                    <input type="text" value="" placeholder="Search" class="form-control" id="keyword">
+                    <div id="results">
+                    </div>
+                    <span class="input-group-btn">
+                        <button type="submit" class="btn btn-default">Add beer</button>
+                    </span>
+                </div>
+        </form>
     </div>
 
 
