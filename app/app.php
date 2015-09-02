@@ -54,7 +54,9 @@
         return $app['twig']->render('beer.html.twig', array('beer' => $beer, 'pubs' => $pubs_on_tap));
     });
 
+    //takes pub user to a page where they can add a pub
     $app->get('/pub_login', function() use ($app) {
+        $all_pubs = Pub::getAll();
         return $app['twig']->render('pub.html.twig', array('all_pubs' => $all_pubs));
     });
 
@@ -76,6 +78,8 @@
         $pub = Pub::find($id);
         return $app['twig']->render('pub_profile.html.twig', array('pub' => $pub, 'beers' => $pub->getBeers()));
     });
+
+    //
 
     return $app;
 ?>
