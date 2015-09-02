@@ -42,7 +42,7 @@
     $app->get('/brewery_info/{id}', function($id) use ($app) {
         $brewery = Brewery::find($id);
         $beers = $brewery->getBeers();
-        return $app['twig']->render('brewery_info.html.twig', array('brewery' => $pub, 'beers' => $beers));
+        return $app['twig']->render('brewery_info.html.twig', array('brewery' => $brewery, 'beers' => $beers));
     });
 
     //takes user to a page for a specific pub from a clicked link
