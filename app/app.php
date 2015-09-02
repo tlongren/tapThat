@@ -116,7 +116,7 @@
                 }
             }
         }
-        return $app['twig']->render('pub_profile.html.twig', array ('pub' => $pub, 'beers' => $all_beers));
+        return $app['twig']->render('pub_profile.html.twig', array ('pub' => $pub, 'beers' => $pub->getBeers()));
     });
 
     //Delete an individual pub
