@@ -17,16 +17,21 @@
 <div class='row'>
     <div class='col-sm-6 center'>
         <h3>List of Beers</h3>
-            <ul>
+            <ul class="list-unstyled">
                 {% for beer in beers %}
                     <li>
-                        <a href="/beer/{{ beer.getId }}">{{beer.getName}}</a>
-
-                        <form action="/beer/{{ beer.getId }}/delete" method="post">
-                            <input id='pub_id' name='pub_id' type='hidden' value='{{ pub.getId() }}'>
-                            <input name="_method" type="hidden" value="delete">
-                            <button type="submit" class="btn btn-danger">Delete</button>
-                        </form>
+                        <ul class="list-unstlyed list-inline">
+                            <li>
+                                <a href="/beer/{{ beer.getId }}">{{beer.getName}}</a>
+                            </li>
+                            <li>
+                                <form action="/beer/{{ beer.getId }}/delete" method="post">
+                                    <input id='pub_id' name='pub_id' type='hidden' value='{{ pub.getId() }}'>
+                                    <input name="_method" type="hidden" value="delete">
+                                    <button type="submit" class="btn btn-danger">Delete</button>
+                                </form>
+                            </li>
+                        </ul>
                     </li>
                 {% endfor %}
             </ul>
