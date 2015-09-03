@@ -11,7 +11,7 @@
 
     $app['debug'] = true;
 
-    $server = 'mysql:host=localhost:8889;dbname=tap_that';
+    $server = 'mysql:host=localhost;dbname=tap_that';
     $username = 'root';
     $password = 'root';
     $DB = new PDO($server, $username, $password);
@@ -24,7 +24,8 @@
     Request::enableHttpMethodParameterOverride();
 
     $app->get('/', function() use ($app) {
-        return $app['twig']->render('index.html.twig');
+        $all_beers = Beer::getAll();
+        return $app['twig']->render('index.html.twig', array('all_beers' => $all_beers, 'all_breweries' => Brewery::getAll(), 'all_pubs' => Pub::getAll()));
     });
 
     //grab search results and return matching beer if exact match
@@ -116,7 +117,15 @@
                 }
             }
         }
-        return $app['twig']->render('pub_profile.html.twig', array ('pub' => $pub, 'beers' => $all_beers));
+        return $app['twig']->render('pub_profile.html.twig', array ('pub' => $pub, 'beers' => $pub->getBeers()));
+    });
+
+    //Delete an individual pub
+    $app->delete('/beer/{id}/delete', function($id) use($app) {
+        $pub = Pub::find($id);
+        $beer = Beer::find($id);
+        $pub->deleteBeer($beer);
+        return $app['twig']->render('pub_profile.html.twig', array('pub' => $pub, 'beers' => $pub->getBeers()));
     });
 
     return $app;

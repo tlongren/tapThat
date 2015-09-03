@@ -75,6 +75,13 @@
     border-bottom: 1px solid #D3D3D3;
 }
 
+.homepage {
+    list-style-type: none;
+    padding: 0;
+    margin: 0 auto;
+    text-align: center;
+}
+
 /*******************/
 /*Autocomplete CSS*/
 /*****************/
@@ -91,21 +98,24 @@
 	display: absolute;
 	border: 1px solid #c0c0c0;
     border-top: 0px;
-    border-bottom-left-radius: .5em;
-    border-bottom-right-radius: .5em;
     display: none;
+    position:absolute;
+    top: 33px;
+    left:0;
+    width:100%;
+    z-index: 2;
+    background-color: white;
 }
 
 #results .item {
 	padding: 3px;
 	font-family: Helvetica;
 	border-bottom: 1px solid #c0c0c0;
+
 }
 
 #results .item:last-child {
 	border-bottom: 0px;
-    border-bottom-left-radius: 2em;
-    border-bottom-right-radius: 1em;
 }
 
 #results .item:hover {
