@@ -4,10 +4,48 @@ hr {
 
 body {
     background-color: rgb(253,250,236);
+    font-family: 'Josefin Sans', sans-serif;
+    cursor: url("/img/beer-color.png"), default;
+}
+
+a:link {
+  color: #333138;
+}
+
+a:visited {
+  color: #333138;
+}
+
+a:hover {
+  color: #FF312E;
+  cursor: url("/img/beer-color.png"), default;
+}
+
+.btn-warning {
+  cursor: url("/img/beer-color.png"), default;
 }
 
 .jumbo-index {
     padding-top: 0;
+}
+
+.navbar-collapse {
+    float: right;
+    width: 600px;
+}
+
+.signup {
+    margin-left: -25px;
+    margin-top: 0.4px;
+}
+
+.pub-login {
+    float: right;
+    margin-right: 0;
+}
+
+.pub-login a {
+    color: white;
 }
 
 .right {
@@ -63,6 +101,11 @@ body {
     color: white;
     height: 200px;
     margin-bottom: 15px;
+}
+
+.intro h1 {
+  font-family: 'Futura';
+  font-size: 69px;
 }
 
 .navbar {
