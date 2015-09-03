@@ -32,6 +32,7 @@
                         {% for beer in all_beers[0:5]  %}
                             <li><a href="/beer/{{ beer.getId}}">{{ beer.getName }}</a></li>
                         {% endfor %}
+                            <li><a href="/beers">View all beers</a></li>
                     </ul>
                 {% else %}
                     <p>There are no beers yet</p>
@@ -44,6 +45,7 @@
                         {% for brewery in all_breweries[0:5] %}
                             <li><a href="/brewery_info/{{ brewery.getId}}">{{ brewery.getName }}</a></li>
                         {% endfor %}
+                            <li><a href="/breweries">View all breweries</a></li>
                     </ul>
                 {% else %}
                     <p>There are no breweries yet</p>
@@ -56,6 +58,7 @@
                         {% for pub in all_pubs[0:5] %}
                             <li><a href="/pub_info/{{ pub.getId}}">{{ pub.getName }}</a></li>
                         {% endfor %}
+                            <li><a href="/pubs">View all pubs</a></li>
                     </ul>
                 {% else %}
                     <p>There are no pubs yet</p>

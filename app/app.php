@@ -202,11 +202,20 @@
         return $app['twig']->render('index.html.twig', array('all_beers' => $all_beers, 'all_breweries' => Brewery::getAll(), 'all_pubs' => Pub::getAll()));
     });
 
+
+    //Get user profile
     $app->get('/pub_login/{id}', function($id) use($app) {
         $app['twig']->addGlobal('logged_user', $_SESSION['user']);
         $drunk = Drunk::find($id);
         $drunk_beers = $drunk->getBeers();
         return $app['twig']->render("drunk_profile.html.twig", array('drunk' => $drunk, 'drunk_beers' => $drunk_beers));
+    });
+
+    //Display all beers
+    $app->get('/beers', function() use($app) {
+        $app['twig']->addGlobal('logged_user', $_SESSION['user']);
+        $beers = Beer::getAll();
+        return $app['twig']->render("beers.html.twig", array("beers" => $beers));
     });
 
     return $app;
