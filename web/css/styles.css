@@ -87,14 +87,17 @@ a:hover {
 .jumbotron {
     background-color: rgba(255,242,198,.60);
     max-height: 75%;
+    min-height: 50%;
     box-shadow: 2px 2px 5px #888888;
+    position: relative;
+    padding: 1em, 1em;
 }
 
 .background {
     background-image: url("/img/logowithback.png"), url("/img/taps.jpg");
     background-size: 400px 400px, cover;
     background-repeat: no-repeat;
-    height: 100%;
+    height: 115%;
 }
 
 .intro {
@@ -115,6 +118,12 @@ a:hover {
 
 .navbar-brand {
     color: white;
+}
+
+.stay-at-bottom {
+    position: absolute;
+    bottom: 0;
+    margin-top: 10px;
 }
 
 /*fixes white space problem on homepage*/
@@ -155,6 +164,10 @@ a:hover {
 .table {
     margin-bottom: 2px;
     table-layout: fixed;
+}
+
+.table-responsive {
+    margin: 0;
 }
 
 

@@ -2,57 +2,64 @@
 {% endembed %}
 
 
-<div class="row jumbotron col-sm-8 col-sm-offset-4">
-    <div class="col-sm-6">
-        <h1>{{brewery.getName}}</h1>
-        <h3>{{brewery.getLocation}}</h3>
-        <h4><a href="//{{brewery.getLink}}">{{brewery.getName}} Website</a></h4>
-    </div>
-    <div class="col-sm-6">
-        <h2 class="center">Current Beers Offered</h2>
-        <div class="table-responsive">
-
-            <table class='table table-condensed'>
-                <thead>
-                    <tr>
-                        <th>
-                            Name
-                        </th>
-                        <th>
-                            Type
-                        </th>
-                        <th>
-                            ABV
-                        </th>
-                        <th>
-                            IBUs
-                        </th>
-                    </tr>
-                </thead>
-            </table>
+<div class="row jumbotron col-sm-9 col-sm-offset-4">
+    <div class="row">
+        <div class="col-sm-6">
+            <h2>{{brewery.getName}}</h2>
         </div>
-        <div class="table-responsive tbody">
-            <table class="table">
-                <tbody>
-                    {% for beer in beers %}
-                        <tr>
-                            <td>
-                                {{beer.getName}}
-                            </td>
-                            <td>
-                                {{beer.getType}}
-                            </td>
-                            <td>
-                                {{beer.getAbv}}%
-                            </td>
-                            <td>
-                                {{beer.getIbu}}
-                            </td>
-                        </tr>
-                    {% endfor %}
-                </tbody>
+        <div class="col-sm-6">
+            <h3>{{brewery.getLocation}}</h3>
+            <h4><a href="//{{brewery.getLink}}">{{brewery.getName}} Website</a></h4>
+        </div>
+    </div>
+    <div class="row">
 
-            </table>
+        <div class="col-sm-12">
+            <h2 class="center">Current Beers Offered</h2>
+            <div class="table-responsive">
+
+                <table class='table table-condensed'>
+                    <thead>
+                        <tr>
+                            <th>
+                                Name
+                            </th>
+                            <th>
+                                Type
+                            </th>
+                            <th>
+                                ABV
+                            </th>
+                            <th>
+                                IBUs
+                            </th>
+                        </tr>
+                    </thead>
+                </table>
+            </div>
+            <div class="table-responsive tbody">
+                <table class="table">
+                    <tbody>
+                        {% for beer in beers %}
+                            <tr>
+                                <td>
+                                    {{beer.getName}}
+                                </td>
+                                <td>
+                                    {{beer.getType}}
+                                </td>
+                                <td>
+                                    {{beer.getAbv}}%
+                                </td>
+                                <td>
+                                    {{beer.getIbu}}
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+
+                </table>
+            </div>
         </div>
     </div>
 

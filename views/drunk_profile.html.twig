@@ -1,65 +1,70 @@
 {% embed "header.html.twig" %}
 {% endembed %}
 
-<div class="row jumbotron">
-    <div class="col-sm-6">
-        <h1>{{drunk.getName}}</h1>
-        <h3>{{drunk.getLocation}}</h3>
-        <h3>{{drunk.getEmail}}</h3>
+<div class="row jumbotron col-sm-8 col-sm-offset-4">
+    <div class="row">
+        <div class="col-sm-12">
+            <h1>{{drunk.getName}}</h1>
+            <h3>{{drunk.getLocation}}</h3>
+            <h3>{{drunk.getEmail}}</h3>
+        </div>
     </div>
-    <div class="beers_table col-sm-6">
-        <h2>Beers drunk and rated</h2>
-        <div class="table-responsive table_beers">
+    <div class="row">
 
-            <table class='table table-scrollable table-condensed'>
-                <thead>
-                    <tr>
-                        <th>
-                            Name
-                        </th>
-                        <th>
-                            Type
-                        </th>
-                        <th>
-                            ABV
-                        </th>
-                        <th>
-                            IBUs
-                        </th>
-                        <th>
-                            Region
-                        </th>
-                        <th>
-                            Brewery
-                        </th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for beer in drunk_beers %}
+        <div class="beers_table col-sm-12">
+            <h2>Beers drunk and rated</h2>
+            <div class="table-responsive table_beers">
+
+                <table class='table table-scrollable table-condensed'>
+                    <thead>
                         <tr>
-                            <td>
-                                {{beer.getName}}
-                            </td>
-                            <td>
-                                {{beer.getType}}
-                            </td>
-                            <td>
-                                {{beer.getAbv}}%
-                            </td>
-                            <td>
-                                {{beer.getIbu}}
-                            </td>
-                            <td>
-                                {{beer.region}}
-                            </td>
-                            <td>
-                                {{beer.Brewery}}
-                            </td>
+                            <th>
+                                Name
+                            </th>
+                            <th>
+                                Type
+                            </th>
+                            <th>
+                                ABV
+                            </th>
+                            <th>
+                                IBUs
+                            </th>
+                            <th>
+                                Region
+                            </th>
+                            <th>
+                                Brewery
+                            </th>
                         </tr>
-                    {% endfor %}
-                </tbody>
+                    </thead>
+                    <tbody>
+                        {% for beer in drunk_beers %}
+                            <tr>
+                                <td>
+                                    {{beer.getName}}
+                                </td>
+                                <td>
+                                    {{beer.getType}}
+                                </td>
+                                <td>
+                                    {{beer.getAbv}}%
+                                </td>
+                                <td>
+                                    {{beer.getIbu}}
+                                </td>
+                                <td>
+                                    {{beer.region}}
+                                </td>
+                                <td>
+                                    {{beer.Brewery}}
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
 
-            </table>
+                </table>
+            </div>
         </div>
     </div>
 
