@@ -13,7 +13,7 @@
 
     $server = 'mysql:host=localhost;dbname=tap_that';
     $username = 'root';
-    $password = 'root';
+    $password = '';
     $DB = new PDO($server, $username, $password);
 
     $app->register(new Silex\Provider\TwigServiceProvider(), array(

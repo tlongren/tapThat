@@ -13,7 +13,7 @@
     // This is the 'search' function that will return all possible rows starting with the keyword sent by the user
     function searchForKeyword($keyword) {
         $db = getDbConnection();
-        $stmt = $db->prepare("SELECT name as beer FROM `beers` WHERE name LIKE ? ORDER BY name");
+        $stmt = $db->prepare("SELECT name as beer FROM `beers` WHERE name LIKE ? ORDER BY name LIMIT 5;");
 
         $keyword = '%' . $keyword . '%';
         $stmt->bindParam(1, $keyword, PDO::PARAM_STR, 100);
