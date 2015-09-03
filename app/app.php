@@ -187,5 +187,19 @@
         return $app['twig']->render('pub_profile.html.twig', array('pub' => $pub, 'beers' => $pub->getBeers()));
     });
 
+    //User signup
+    $app->get('/signup', function() use($app) {
+        $app['twig']->addGlobal('logged_user', $_SESSION['user']);
+        return $app['twig']->render('drunk_signup.html.twig');
+    });
+
+    $app->post('/signup', function() use($app) {
+        $all_beers = Beer::getAll();
+        $app['twig']->addGlobal('logged_user', $_SESSION['user']);
+        $new_drunk = new Drunk($_POST['name'], $_POST['date_of_birth'], $_POST['location'], $_POST['email'], $_POST['password']);
+        $new_drunk->save();
+        return $app['twig']->render('index.html.twig', array('all_beers' => $all_beers, 'all_breweries' => Brewery::getAll(), 'all_pubs' => Pub::getAll()));
+    });
+
     return $app;
 ?>
