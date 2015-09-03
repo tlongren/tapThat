@@ -8,11 +8,12 @@
 
     require_once "src/Drunk.php";
     require_once "src/Beer.php";
+    require_once "src/Brew.php";
 
 
     $server = 'mysql:host=localhost;dbname=tap_that_test';
     $username = 'root';
-    $password = '';
+    $password = 'root';
     $DB = new PDO($server, $username, $password);
 
     class DrunkTest extends PHPUnit_Framework_TestCase
@@ -21,6 +22,7 @@
         protected function teardown()
         {
             Drunk::deleteAll();
+            Brew::deleteAll();
         }
 
         function testGetName()
@@ -503,6 +505,40 @@
             //Assert
             $this->assertEquals($test_drunk2, $result);
 
+        }
+
+        function testGetBrews()
+        {
+            //Arrange
+            $name = "Person 1";
+            $date_of_birth = "1988-03-04";
+            $location = "Portland, OR";
+            $email = "email@email.com";
+            $password = "that";
+            $test_drunk = new Drunk($name, $date_of_birth, $location, $email, $password);
+            $test_drunk->save();
+
+            $beer_id = 1;
+            $drunk_id = $test_drunk->getId();
+            $pub_id = 1;
+            $beer_rating = 4.5;
+            $brew_date = "2015-04-03";
+            $new_brew = new Brew($beer_id, $drunk_id, $pub_id, $beer_rating, $brew_date);
+            $new_brew->save();
+
+            $beer_id2 = 2;
+            $drunk_id2 = $test_drunk->getId();
+            $pub_id2 = 2;
+            $beer_rating2 = 4.5;
+            $brew_date2 = "2015-04-03";
+            $new_brew2 = new Brew($beer_id2, $drunk_id2, $pub_id2, $beer_rating2, $brew_date2);
+            $new_brew2->save();
+
+            //Act
+            $result = $test_drunk->getBrews();
+
+            //Assert
+            $this->assertEquals([$new_brew, $new_brew2], $result);
         }
 
     }

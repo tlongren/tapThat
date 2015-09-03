@@ -213,13 +213,54 @@
         return $app['twig']->render('index.html.twig', array('search_validate' => [], 'all_beers' => $all_beers, 'all_breweries' => Brewery::getAll(), 'all_pubs' => Pub::getAll()));
     });
 
-
     //Get user profile
     $app->get('/public_login/{id}', function($id) use($app) {
         $app['twig']->addGlobal('logged_user', $_SESSION['user']);
         $drunk = Drunk::find($id);
-        $drunk_beers = $drunk->getBeers();
-        return $app['twig']->render("drunk_profile.html.twig", array('drunk' => $drunk, 'drunk_beers' => $drunk_beers));
+        $drunk_brews = $drunk->getBrews();
+        $brews = array();
+        foreach ($drunk_brews as $brew) {
+            $beer = Beer::find($brew->getBeerId());
+            $beer_name = $beer->getName();
+            $pub = Pub::find($brew->getPubId());
+            $pub_name = $pub->getName();
+            $brew_info = array('beer_name' => $beer_name,
+                  'pub_name' => $pub_name,
+                  'beer_rating' => $brew->getBeerRating(),
+                  'brew_date' => $brew->getBrewDate());
+            array_push($brews, $brew_info);
+        }
+        return $app['twig']->render("drunk_profile.html.twig", array('drunk' => $drunk, 'brews' => $brews));
+    });
+
+    //route that adds a brew to a profile page
+    $app->get('/add_brew', function() use($app) {
+        $app['twig']->addGlobal('logged_user', $_SESSION['user']);
+        $all_beers = Beer::getAll();
+        $all_pubs = Pub::getAll();
+        return $app['twig']->render("brew.html.twig", array('all_beers' => $all_beers, 'all_pubs' => $all_pubs));
+    });
+
+    //route posts a brew to a profile page
+    $app->post('/public_login/{id}', function($id) use ($app) {
+        $app['twig']->addGlobal('logged_user', $_SESSION['user']);
+        $new_brew = new Brew($_POST['beer_id'], $_POST['drunk_id'], $_POST['pub_id'], $_POST['rating'], $_POST['date']);
+        $new_brew->save();
+        $drunk = Drunk::find($id);
+        $drunk_brews = $drunk->getBrews();
+        $brews = array();
+        foreach ($drunk_brews as $brew) {
+            $beer = Beer::find($brew->getBeerId());
+            $beer_name = $beer->getName();
+            $pub = Pub::find($brew->getPubId());
+            $pub_name = $pub->getName();
+            $brew_info = array('beer_name' => $beer_name,
+                  'pub_name' => $pub_name,
+                  'beer_rating' => $brew->getBeerRating(),
+                  'brew_date' => $brew->getBrewDate());
+            array_push($brews, $brew_info);
+        }
+        return $app['twig']->render("drunk_profile.html.twig", array('drunk' => $drunk, 'brews' => $brews));
     });
 
     //Display all beers

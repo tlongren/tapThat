@@ -1,5 +1,6 @@
 <?php
     require_once "Beer.php";
+    require_once "Brew.php";
     class Drunk
     {
         private $name;
@@ -128,6 +129,36 @@
             $GLOBALS['DB']->exec("DELETE FROM brews WHERE drunk_id = {$this->getId()}");
         }
 
+        //brew rating methods
+
+        //Possibly disfunctional method:
+        // function addBrew($brew)
+        // {
+        //     $GLOBALS['DB']->exec("INSERT INTO brews (drunk_id, beer_id, pub_id, beer_rating, brew_date) VALUES (
+        //         {$this->getId()},
+        //         {$brew->getBeerId()},
+        //         {$brew->getPubId()},
+        //         {$brew->getBeerRating()},
+        //         '{$brew->getBrewDate()}'
+        //     );");
+        // }
+
+        function getBrews()
+        {
+            $brews_query = $GLOBALS['DB']->query("SELECT * FROM brews WHERE (drunk_id = {$this->getId()});");
+            $brews = array();
+            foreach ($brews_query as $brew) {
+                $beer_id = $brew['beer_id'];
+                $drunk_id = $brew['drunk_id'];
+                $pub_id = $brew['pub_id'];
+                $beer_rating = $brew['beer_rating'];
+                $brew_date = $brew['brew_date'];
+                $id = $brew['id'];
+                $new_brew = new Brew($beer_id, $drunk_id, $pub_id, $beer_rating, $brew_date, $id);
+                array_push($brews, $new_brew);
+            }
+            return $brews;
+        }
 
         ////////////Static functions///////////////////
 

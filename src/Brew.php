@@ -117,7 +117,7 @@
 
         static function deleteAll()
         {
-            $GLOBALS['DB']->exec("DELETE FROM brews");
+            $GLOBALS['DB']->exec("DELETE FROM brews;");
         }
 
         static function find($search_id)
