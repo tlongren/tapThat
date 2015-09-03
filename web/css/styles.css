@@ -59,6 +59,11 @@
     color: white;
 }
 
+/*fixes white space problem on homepage*/
+.bug-fix {
+    min-height: 40%;
+}
+
 .footer {
     position: fixed;
     bottom: 0;
