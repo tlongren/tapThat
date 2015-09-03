@@ -103,7 +103,7 @@
 
         static function getAll()
         {
-            $returned_beers = $GLOBALS['DB']->query("SELECT * FROM beers;");
+            $returned_beers = $GLOBALS['DB']->query("SELECT * FROM beers ORDER BY name ASC;");
             $beers = array();
             foreach ($returned_beers as $beer) {
                 $id = $beer['id'];

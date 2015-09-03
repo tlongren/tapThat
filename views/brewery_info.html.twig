@@ -2,7 +2,7 @@
 {% endembed %}
 
 
-<div class="row jumbotron col-sm-9 col-sm-offset-4">
+<div class="row jumbotron col-sm-8 col-sm-offset-4">
     <div class="row">
         <div class="col-sm-6">
             <h2>{{brewery.getName}}</h2>
@@ -43,7 +43,7 @@
                         {% for beer in beers %}
                             <tr>
                                 <td>
-                                    {{beer.getName}}
+                                    <a href="/beer/{{beer.getId}}">{{beer.getName}}</a>
                                 </td>
                                 <td>
                                     {{beer.getType}}

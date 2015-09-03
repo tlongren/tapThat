@@ -132,7 +132,8 @@
         $app['twig']->addGlobal('logged_user', $_SESSION['user']);
         $beer = Beer::find($id);
         $pubs_on_tap = $beer->getPubs();
-        return $app['twig']->render('beer.html.twig', array('beer' => $beer, 'pubs' => $pubs_on_tap));
+        $brewery = Brewery::find($beer->getBreweryId());
+        return $app['twig']->render('beer.html.twig', array('beer' => $beer, 'pubs' => $pubs_on_tap, 'brewery' => $brewery));
     });
 
     //takes pub user to a page where they can add a pub

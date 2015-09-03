@@ -5,10 +5,10 @@
 {% endembed %}
 
 
-<div class="col-sm-8 col-sm-offset-4">
-    <h4>Pubs</h4>
-    <div class="table-responsive">
-        <table class='table'>
+<div class="row col-sm-8 col-sm-offset-4 jumbotron">
+    <h3>Pubs</h3>
+    <div>
+        <table class='table table-responsive table-condensed'>
             <thead>
                 <tr>
                     <th>
@@ -24,24 +24,25 @@
             </thead>
         </table>
     </div>
-    <div class="table-responsive tbody">
-        <table class="table">
-            <tbody>
-                {% for pub in pubs %}
-                    <tr>
-                        <td>
-                            <a href='/pub/{{pub.getId}}'>{{pub.getName}}</a>
-                        </td>
-                        <td>
-                            {{pub.getLocation}}
-                        </td>
-                        <td>
-                            <a href="{{pub.getLink}}">{{pub.getLink}}</a>
-                        </td>
-                    </tr>
-                {% endfor %}
-            </tbody>
-        </table>
+    <div class="tbody">
+            <table class='table table-responsive table-condensed'>
+                <tbody>
+                    {% for pub in pubs %}
+                        <tr>
+                            <td>
+                                <a href="/pub_info/{{pub.getId}}">{{pub.getName}}</a>
+                            </td>
+                            <td>
+                                {{pub.getLocation}}
+                            </td>
+                            <td>
+                                <a href="{{pub.getLink}}">{{pub.getLink}}</a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
     </div>
 </div>
 
