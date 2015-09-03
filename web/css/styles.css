@@ -2,6 +2,10 @@ hr {
     margin: 5px;
 }
 
+body {
+    background-color: rgb(253,250,236);
+}
+
 .right {
     float:right;
 }
@@ -41,6 +45,7 @@ hr {
 .jumbotron {
     background-color: rgba(255,242,198,1);
     max-height: 75%;
+    box-shadow: 10px 10px 5px #888888;
 }
 
 .background {
