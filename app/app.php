@@ -11,9 +11,9 @@
 
     $app['debug'] = true;
 
-    $server = 'mysql:host=localhost;dbname=tap_that';
+    $server = 'mysql:host=localhost:3306;dbname=tap_that';
     $username = 'root';
-    $password = '';
+    $password = 'root';
     $DB = new PDO($server, $username, $password);
 
     $app->register(new Silex\Provider\TwigServiceProvider(), array(

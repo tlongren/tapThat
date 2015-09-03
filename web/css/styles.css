@@ -39,19 +39,30 @@
 }
 
 .background {
-    background-image: url("/img/logowithback.png");
-    background-size: 400px 400px;
+    background-image: url("/img/logowithback.png"), url("/img/taps.jpg");
+    background-size: 400px 400px, cover;
     background-repeat: no-repeat;
 }
 
 .intro {
+    color: white;
     height: 200px;
     margin-bottom: 15px;
+}
+
+.navbar {
+    background-color: rgba(255,255,255,0.0);
+    border: none;
+}
+
+.navbar-brand {
+    color: white;
 }
 
 .footer {
     position: fixed;
     bottom: 0;
+    padding-top: 7px;
     width: 100%;
     background-color: white;
     z-index: 2;
@@ -60,7 +71,6 @@
 .footer p {
     margin-bottom: 0;
 }
-
 
 .table_beers {
     max-height: 250px;
