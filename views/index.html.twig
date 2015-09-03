@@ -10,8 +10,8 @@
     </div>
 </div>
 
-<div class="jumbotron">
-    <h2>Search taps</h2>
+<div class="jumbotron jumbo-index col-sm-8 col-sm-offset-4">
+    <h2 class="jumbo-search-header">Search taps</h2>
     <form action="/search_beers" autocomplete="off">
         <div class="input-group">
             <input name="beer" value="" type="text" class="form-control" placeholder="Search for a beer..." id="keyword">
@@ -34,7 +34,7 @@
                         {% endfor %}
                     </ul>
                 {% else %}
-                    <p>There are no breweries yet</p>
+                    <p>There are no beers yet</p>
                 {% endif %}
             </div>
             <div class="col-sm-4">

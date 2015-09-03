@@ -1,18 +1,17 @@
 {% embed "header.html.twig" %}
 {% endembed %}
 
-
-<div class="row jumbotron col-sm-8 col-sm-offset-4">
+<div class="row jumbotron">
     <div class="col-sm-6">
-        <h1>{{brewery.getName}}</h1>
-        <h3>{{brewery.getLocation}}</h3>
-        <h4><a href="{{brewery.getLink}}">{{brewery.getName}} Website</a></h4>
+        <h1>{{drunk.getName}}</h1>
+        <h3>{{drunk.getLocation}}</h3>
+        <h3>{{drunk.getEmail}}</h3>
     </div>
-    <div class="col-sm-6">
-        <h2 class="center">Current Beers Offered</h2>
-        <div class="table-responsive">
+    <div class="beers_table col-sm-6">
+        <h2>Beers drunk and rated</h2>
+        <div class="table-responsive table_beers">
 
-            <table class='table table-condensed'>
+            <table class='table table-scrollable table-condensed'>
                 <thead>
                     <tr>
                         <th>
@@ -27,14 +26,16 @@
                         <th>
                             IBUs
                         </th>
+                        <th>
+                            Region
+                        </th>
+                        <th>
+                            Brewery
+                        </th>
                     </tr>
                 </thead>
-            </table>
-        </div>
-        <div class="table-responsive tbody">
-            <table class="table">
                 <tbody>
-                    {% for beer in beers %}
+                    {% for beer in drunk_beers %}
                         <tr>
                             <td>
                                 {{beer.getName}}
@@ -48,6 +49,12 @@
                             <td>
                                 {{beer.getIbu}}
                             </td>
+                            <td>
+                                {{beer.region}}
+                            </td>
+                            <td>
+                                {{beer.Brewery}}
+                            </td>
                         </tr>
                     {% endfor %}
                 </tbody>
@@ -57,8 +64,6 @@
     </div>
 
 </div>
-
-
 
 
 
