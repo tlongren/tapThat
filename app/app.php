@@ -10,7 +10,7 @@
 
     $app['debug'] = true;
 
-    $server = 'mysql:host=localhost;dbname=tap_that';
+    $server = 'mysql:host=localhost:8889;dbname=tap_that';
     $username = 'root';
     $password = 'root';
     $DB = new PDO($server, $username, $password);
@@ -124,7 +124,7 @@
         $app['twig']->addGlobal('logged_user', $_SESSION['user']);
         $beer = Beer::find($id);
         $pubs_on_tap = $beer->getPubs();
-        return $app['twig']->render('beer2.html.twig', array('beer' => $beer, 'pubs' => $pubs_on_tap));
+        return $app['twig']->render('beer.html.twig', array('beer' => $beer, 'pubs' => $pubs_on_tap));
     });
 
     //takes pub user to a page where they can add a pub
@@ -204,7 +204,7 @@
 
 
     //Get user profile
-    $app->get('/pub_login/{id}', function($id) use($app) {
+    $app->get('/public_login/{id}', function($id) use($app) {
         $app['twig']->addGlobal('logged_user', $_SESSION['user']);
         $drunk = Drunk::find($id);
         $drunk_beers = $drunk->getBeers();
