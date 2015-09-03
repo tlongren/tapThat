@@ -86,8 +86,8 @@ a:hover {
 
 .jumbotron {
     background-color: rgba(255,242,198,.60);
-    max-height: 75%;
-    min-height: 50%;
+    /*max-height: 75%;*/
+    /*min-height: 50%;*/
     box-shadow: 2px 2px 5px #888888;
     position: relative;
     padding: 1em, 1em;
@@ -127,10 +127,9 @@ a:hover {
 }
 
 /*fixes white space problem on homepage*/
-.bug-fix {
-    min-height: 40%;
-
-}
+/*.bug-fix {
+    min-height: 20%;
+}*/
 
 .footer {
     position: fixed;
