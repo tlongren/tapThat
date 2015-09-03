@@ -136,6 +136,9 @@ a:hover {
     margin-bottom: 0;
 }
 
+#navbar-links li a{
+    color:white;
+}
 
 /*******************/
 /*Table styling CSS*/
@@ -200,7 +203,7 @@ a:hover {
 
 #results .item {
 	padding: 3px;
-	font-family: Helvetica;
+	font-family: "josefin sans";
 	border-bottom: 1px solid #c0c0c0;
 
 }

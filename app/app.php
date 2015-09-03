@@ -150,7 +150,7 @@
         $link = $_POST['link'];
         $new_pub = new Pub($name, $location, $link);
         $new_pub->save();
-        return $app['twig']->render('pub.html.twig', array('all_pubs' => Pub::getAll()));
+        return $app['twig']->render('pub.html.twig', array('pubs' => Pub::getAll()));
     });
 
     //deletes all the pubs
