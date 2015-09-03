@@ -47,7 +47,7 @@ body {
 }
 
 .jumbotron {
-    background-color: rgba(255,242,198,1);
+    background-color: rgba(255,242,198,.60);
     max-height: 75%;
     box-shadow: 2px 2px 5px #888888;
 }
@@ -56,6 +56,7 @@ body {
     background-image: url("/img/logowithback.png"), url("/img/taps.jpg");
     background-size: 400px 400px, cover;
     background-repeat: no-repeat;
+    height: 100%;
 }
 
 .intro {
@@ -85,6 +86,7 @@ body {
     padding-top: 7px;
     width: 100%;
     z-index: 2;
+    background-color: rgba(255,242,198,.75);
 }
 
 .footer p {
