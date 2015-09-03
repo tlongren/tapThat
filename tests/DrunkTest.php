@@ -12,7 +12,7 @@
 
     $server = 'mysql:host=localhost;dbname=tap_that_test';
     $username = 'root';
-    $password = 'root';
+    $password = '';
     $DB = new PDO($server, $username, $password);
 
     class DrunkTest extends PHPUnit_Framework_TestCase
@@ -31,7 +31,8 @@
             $location = "Portland, OR";
             $email = "email@email.com";
             $id = 1;
-            $test_drunk = new Drunk($name, $date_of_birth, $location, $email, $id);
+            $password = "that";
+            $test_drunk = new Drunk($name, $date_of_birth, $location, $email, $password, $id);
 
             //Act
             $result = $test_drunk->getName();
@@ -48,7 +49,8 @@
             $location = "Portland, OR";
             $email = "email@email.com";
             $id = 1;
-            $test_drunk = new Drunk($name, $date_of_birth, $location, $email, $id);
+            $password = "that";
+            $test_drunk = new Drunk($name, $date_of_birth, $location, $email, $password, $id);
 
             $new_name = "Person 2";
 
@@ -68,7 +70,8 @@
             $location = "Portland, OR";
             $email = "email@email.com";
             $id = 1;
-            $test_drunk = new Drunk($name, $date_of_birth, $location, $email, $id);
+            $password = "that";
+            $test_drunk = new Drunk($name, $date_of_birth, $location, $email, $password, $id);
 
             //Act
             $result = $test_drunk->getDateOfBirth();
@@ -85,7 +88,8 @@
             $location = "Portland, OR";
             $email = "email@email.com";
             $id = 1;
-            $test_drunk = new Drunk($name, $date_of_birth, $location, $email, $id);
+            $password = "that";
+            $test_drunk = new Drunk($name, $date_of_birth, $location, $email, $password, $id);
 
             $new_date_of_birth = "1987-08-09";
 
@@ -105,7 +109,8 @@
             $location = "Portland, OR";
             $email = "email@email.com";
             $id = 1;
-            $test_drunk = new Drunk($name, $date_of_birth, $location, $email, $id);
+            $password = "that";
+            $test_drunk = new Drunk($name, $date_of_birth, $location, $email, $password, $id);
 
             //Act
             $result = $test_drunk->getLocation();
@@ -122,7 +127,8 @@
             $location = "Portland, OR";
             $email = "email@email.com";
             $id = 1;
-            $test_drunk = new Drunk($name, $date_of_birth, $location, $email, $id);
+            $password = "that";
+            $test_drunk = new Drunk($name, $date_of_birth, $location, $email, $password, $id);
 
             $new_location = "Chapel HIll, NC";
 
@@ -142,7 +148,8 @@
             $location = "Portland, OR";
             $email = "email@email.com";
             $id = 1;
-            $test_drunk = new Drunk($name, $date_of_birth, $location, $email, $id);
+            $password = "that";
+            $test_drunk = new Drunk($name, $date_of_birth, $location, $email, $password, $id);
 
             //Act
             $result = $test_drunk->getEmail();
@@ -159,7 +166,8 @@
             $location = "Portland, OR";
             $email = "email@email.com";
             $id = 1;
-            $test_drunk = new Drunk($name, $date_of_birth, $location, $email, $id);
+            $password = "that";
+            $test_drunk = new Drunk($name, $date_of_birth, $location, $email, $password, $id);
 
             $new_email = "this@this.com";
 
@@ -179,7 +187,8 @@
             $location = "Portland, OR";
             $email = "email@email.com";
             $id = 1;
-            $test_drunk = new Drunk($name, $date_of_birth, $location, $email, $id);
+            $password = "that";
+            $test_drunk = new Drunk($name, $date_of_birth, $location, $email, $password, $id);
 
             //Act
             $result = $test_drunk->getId();
@@ -195,8 +204,9 @@
             $date_of_birth = "1988-03-04";
             $location = "Portland, OR";
             $email = "email@email.com";
-            $id = 1;
-            $test_drunk = new Drunk($name, $date_of_birth, $location, $email, $id);
+            $password = "that";
+            $id = null;
+            $test_drunk = new Drunk($name, $date_of_birth, $location, $email, $password, $id);
 
             //Act
             $test_drunk->save();
@@ -215,7 +225,8 @@
             $location = "Portland, OR";
             $email = "email@email.com";
             $id = 1;
-            $test_drunk = new Drunk($name, $date_of_birth, $location, $email, $id);
+            $password = "that";
+            $test_drunk = new Drunk($name, $date_of_birth, $location, $email, $password, $id);
             $test_drunk->save();
 
             $name2 = "Person 1";
@@ -223,7 +234,8 @@
             $location2 = "Portland, OR";
             $email2 = "email@email.com";
             $id2 = 1;
-            $test_drunk2 = new Drunk($name2, $date_of_birth2, $location2, $email2, $id2);
+            $password2 = "them";
+            $test_drunk2 = new Drunk($name2, $date_of_birth2, $location2, $email2, $password2, $id2);
             $test_drunk2->save();
 
             //Act
@@ -241,7 +253,8 @@
             $location = "Portland, OR";
             $email = "email@email.com";
             $id = 1;
-            $test_drunk = new Drunk($name, $date_of_birth, $location, $email, $id);
+            $password = "that";
+            $test_drunk = new Drunk($name, $date_of_birth, $location, $email, $password, $id);
             $test_drunk->save();
 
             $name2 = "Person 1";
@@ -249,7 +262,8 @@
             $location2 = "Portland, OR";
             $email2 = "email@email.com";
             $id2 = 1;
-            $test_drunk2 = new Drunk($name2, $date_of_birth2, $location2, $email2, $id2);
+            $password2 = "them";
+            $test_drunk2 = new Drunk($name2, $date_of_birth2, $location2, $email2, $password2, $id2);
             $test_drunk2->save();
 
             //Act
@@ -268,7 +282,8 @@
             $location = "Portland, OR";
             $email = "email@email.com";
             $id = 1;
-            $test_drunk = new Drunk($name, $date_of_birth, $location, $email, $id);
+            $password = "that";
+            $test_drunk = new Drunk($name, $date_of_birth, $location, $email, $password, $id);
             $test_drunk->save();
 
             $new_name = "Person 2";
@@ -289,14 +304,16 @@
             $date_of_birth = "1988-03-04";
             $location = "Portland, OR";
             $email = "email@email.com";
-            $test_drunk = new Drunk($name, $date_of_birth, $location, $email);
+            $password = "that";
+            $test_drunk = new Drunk($name, $date_of_birth, $location, $email, $password);
             $test_drunk->save();
 
             $name2 = "Person 1";
             $date_of_birth2 = "1988-03-04";
             $location2 = "Portland, OR";
             $email2 = "email@email.com";
-            $test_drunk2 = new Drunk($name2, $date_of_birth2, $location2, $email2);
+            $password2 = "them";
+            $test_drunk2 = new Drunk($name2, $date_of_birth2, $location2, $email2, $password2);
             $test_drunk2->save();
 
             //Act
@@ -314,14 +331,16 @@
             $date_of_birth = "1988-03-04";
             $location = "Portland, OR";
             $email = "email@email.com";
-            $test_drunk = new Drunk($name, $date_of_birth, $location, $email);
+            $password = "that";
+            $test_drunk = new Drunk($name, $date_of_birth, $location, $email, $password);
             $test_drunk->save();
 
             $name2 = "Person 1";
             $date_of_birth2 = "1988-03-04";
             $location2 = "Portland, OR";
             $email2 = "email@email.com";
-            $test_drunk2 = new Drunk($name2, $date_of_birth2, $location2, $email2);
+            $password2 = "them";
+            $test_drunk2 = new Drunk($name2, $date_of_birth2, $location2, $email2, $password2);
             $test_drunk2->save();
 
             //Act
@@ -341,7 +360,8 @@
             $location = "Portland, OR";
             $email = "email@email.com";
             $id = 1;
-            $test_drunk = new Drunk($name, $date_of_birth, $location, $email);
+            $password = "that";
+            $test_drunk = new Drunk($name, $date_of_birth, $location, $email, $password, $id);
             $test_drunk->save();
 
             $id2 = null;
@@ -382,7 +402,8 @@
             $location = "Portland, OR";
             $email = "email@email.com";
             $id = 1;
-            $test_drunk = new Drunk($name, $date_of_birth, $location, $email, $id);
+            $password = "that";
+            $test_drunk = new Drunk($name, $date_of_birth, $location, $email, $password, $id);
             $test_drunk->save();
 
             $id2 = null;
@@ -423,7 +444,8 @@
             $location = "Portland, OR";
             $email = "email@email.com";
             $id = 1;
-            $test_drunk = new Drunk($name, $date_of_birth, $location, $email, $id);
+            $password = "that";
+            $test_drunk = new Drunk($name, $date_of_birth, $location, $email, $password, $id);
             $test_drunk->save();
 
             $id2 = null;
@@ -454,6 +476,33 @@
             //Assert
             $result = $test_drunk->getBeers();
             $this->assertEquals([], $result);
+        }
+
+        function testGetByEmail()
+        {
+            //Arrange
+            $name = "Person 1";
+            $date_of_birth = "1988-03-04";
+            $location = "Portland, OR";
+            $email = "email@email.com";
+            $password = "that";
+            $test_drunk = new Drunk($name, $date_of_birth, $location, $email, $password);
+            $test_drunk->save();
+
+            $name2 = "Person 1";
+            $date_of_birth2 = "1988-03-04";
+            $location2 = "Portland, OR";
+            $email2 = "email@email.com";
+            $password2 = "them";
+            $test_drunk2 = new Drunk($name2, $date_of_birth2, $location2, $email2, $password2);
+            $test_drunk2->save();
+
+            //Act
+            $result = Drunk::findByEmail($test_drunk2->getEmail());
+
+            //Assert
+            $this->assertEquals($test_drunk2, $result);
+
         }
 
     }
