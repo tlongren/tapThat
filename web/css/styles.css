@@ -4,6 +4,17 @@ hr {
 
 body {
     background-color: rgb(253,250,236);
+    font-family: 'Josefin Sans', sans-serif;
+    cursor: url("/img/beer-color.png"), default;
+}
+
+a:link {
+  color: #333138;
+}
+
+a:hover {
+  color: #FF312E;
+  cursor: url("/img/beer-color.png"), default;
 }
 
 .jumbo-index {
@@ -63,6 +74,11 @@ body {
     color: white;
     height: 200px;
     margin-bottom: 15px;
+}
+
+.intro h1 {
+  font-family: 'Futura';
+  font-size: 69px;
 }
 
 .navbar {
