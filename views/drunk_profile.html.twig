@@ -1,0 +1,71 @@
+{% embed "header.html.twig" %}
+{% endembed %}
+
+<div class="row jumbotron">
+    <div class="col-sm-6">
+        <h1>{{drunk.getName}}</h1>
+        <h3>{{drunk.getLocation}}</h3>
+        <h3>{{drunk.getEmail}}</h3>
+    </div>
+    <div class="beers_table col-sm-6">
+        <h2>Beers drunk and rated</h2>
+        <div class="table-responsive table_beers">
+
+            <table class='table table-scrollable table-condensed'>
+                <thead>
+                    <tr>
+                        <th>
+                            Name
+                        </th>
+                        <th>
+                            Type
+                        </th>
+                        <th>
+                            ABV
+                        </th>
+                        <th>
+                            IBUs
+                        </th>
+                        <th>
+                            Region
+                        </th>
+                        <th>
+                            Brewery
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for beer in drunk_beers %}
+                        <tr>
+                            <td>
+                                {{beer.getName}}
+                            </td>
+                            <td>
+                                {{beer.getType}}
+                            </td>
+                            <td>
+                                {{beer.getAbv}}%
+                            </td>
+                            <td>
+                                {{beer.getIbu}}
+                            </td>
+                            <td>
+                                {{beer.region}}
+                            </td>
+                            <td>
+                                {{beer.Brewery}}
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+
+            </table>
+        </div>
+    </div>
+
+</div>
+
+
+
+{% embed "footer.html.twig" %}
+{% endembed %}

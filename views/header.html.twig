@@ -51,7 +51,7 @@
 
             {% else %}
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a href="/pub_login">Profile</a></li>
+                    <li><a href="/pub_login/{{ logged_user.getId }}">Profile</a></li>
                     <li><a href="/logout">Logout from {{ logged_user.getEmail }}</a></li>
                 </ul>
             {% endif %}

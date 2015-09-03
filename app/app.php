@@ -187,18 +187,26 @@
         return $app['twig']->render('pub_profile.html.twig', array('pub' => $pub, 'beers' => $pub->getBeers()));
     });
 
-    //User signup
+    //User signup form
     $app->get('/signup', function() use($app) {
         $app['twig']->addGlobal('logged_user', $_SESSION['user']);
         return $app['twig']->render('drunk_signup.html.twig');
     });
 
+    //User signup posting and returning to main page (no auto-login)
     $app->post('/signup', function() use($app) {
-        $all_beers = Beer::getAll();
         $app['twig']->addGlobal('logged_user', $_SESSION['user']);
+        $all_beers = Beer::getAll();
         $new_drunk = new Drunk($_POST['name'], $_POST['date_of_birth'], $_POST['location'], $_POST['email'], $_POST['password']);
         $new_drunk->save();
         return $app['twig']->render('index.html.twig', array('all_beers' => $all_beers, 'all_breweries' => Brewery::getAll(), 'all_pubs' => Pub::getAll()));
+    });
+
+    $app->get('/pub_login/{id}', function($id) use($app) {
+        $app['twig']->addGlobal('logged_user', $_SESSION['user']);
+        $drunk = Drunk::find($id);
+        $drunk_beers = $drunk->getBeers();
+        return $app['twig']->render("drunk_profile.html.twig", array('drunk' => $drunk, 'drunk_beers' => $drunk_beers));
     });
 
     return $app;
