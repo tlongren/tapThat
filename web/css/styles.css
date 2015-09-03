@@ -17,6 +17,10 @@ a:hover {
   cursor: url("/img/beer-color.png"), default;
 }
 
+.btn-warning {
+  cursor: url("/img/beer-color.png"), default;
+}
+
 .jumbo-index {
     padding-top: 0;
 }
