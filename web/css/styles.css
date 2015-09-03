@@ -12,6 +12,10 @@ a:link {
   color: #333138;
 }
 
+a:visited {
+  color: #333138;
+}
+
 a:hover {
   color: #FF312E;
   cursor: url("/img/beer-color.png"), default;
@@ -23,6 +27,25 @@ a:hover {
 
 .jumbo-index {
     padding-top: 0;
+}
+
+.navbar-collapse {
+    float: right;
+    width: 600px;
+}
+
+.signup {
+    margin-left: -25px;
+    margin-top: 0.4px;
+}
+
+.pub-login {
+    float: right;
+    margin-right: 0;
+}
+
+.pub-login a {
+    color: white;
 }
 
 .right {
