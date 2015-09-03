@@ -1,54 +1,63 @@
 {% embed "header.html.twig" %}
 {% endembed %}
 
-<div class="row jumbotron">
-    <div class="col-sm-6">
-        <h1>{{drunk.getName}}</h1>
-        <h3>{{drunk.getLocation}}</h3>
-        <h3>{{drunk.getEmail}}</h3>
+<div class="row jumbotron col-sm-8 col-sm-offset-4">
+    <div class="row">
+        <div class="col-sm-4">
+            <h1>{{drunk.getName}}</h1>
+        </div>
+        <div class="col-sm-4 col-sm-offset-4">
+            <ul class="list-unstyled">
+                <li>{{drunk.getLocation}}</li>
+                <li>{{drunk.getEmail}}</li>
+            </ul>
+        </div>
     </div>
-    <div class="beers_table col-sm-6">
-        <h2>Beers drunk and rated</h2>
-        <a href="/add_brew"><button class="btn btn-warning"type="submit">I had a beer</button></a>
-        <div class="table-responsive table_beers">
+    <div class="row">
 
-            <table class='table table-scrollable table-condensed'>
-                <thead>
-                    <tr>
-                        <th>
-                            Beer
-                        </th>
-                        <th>
-                            Pub
-                        </th>
-                        <th>
-                            Beer Rating
-                        </th>
-                        <th>
-                            Date
-                        </th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for brew in brews %}
+        <div class="beers_table col-sm-12">
+            <h2>Beers drunk and rated</h2>
+            <a href="/add_brew"><button class="btn btn-warning">I had another beer</button></a>
+            <div class="table-responsive table_beers">
+
+                <table class='table table-scrollable table-condensed'>
+                    <thead>
                         <tr>
-                            <td>
-                                {{brew['beer_name']}}
-                            </td>
-                            <td>
-                                {{brew['pub_name']}}
-                            </td>
-                            <td>
-                                {{brew['beer_rating']}} Beers
-                            </td>
-                            <td>
-                                {{brew['brew_date']}}
-                            </td>
+                            <th>
+                                Beer name
+                            </th>
+                            <th>
+                                Pub name
+                            </th>
+                            <th>
+                                Beer rating
+                            </th>
+                            <th>
+                                Brew date
+                            </th>
                         </tr>
-                    {% endfor %}
-                </tbody>
+                    </thead>
+                    <tbody>
+                        {% for brew in brews %}
+                            <tr>
+                                <td>
+                                    {{brew['beer_name']}}
+                                </td>
+                                <td>
+                                    {{brew['pub_name']}}
+                                </td>
+                                <td>
+                                    {{brew['beer_rating']}}/5.0
+                                </td>
+                                <td>
+                                    {{brew['brew_date']}}
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
 
-            </table>
+                </table>
+            </div>
         </div>
     </div>
 

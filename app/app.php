@@ -80,9 +80,11 @@
         $app['twig']->addGlobal('logged_user', $_SESSION['user']);
         $all_beers = Beer::getAll();
         $matching_beer = null;
+        $matching_brewery = null;
         foreach ($all_beers as $beer) {
             if ($_GET['beer'] == $beer->getName()) {
                 $matching_beer = $beer;
+                $matching_brewery = Brewery::find($matching_beer->getBreweryId());
             }
         }
 
@@ -91,7 +93,7 @@
             return $app['twig']->render('index.html.twig', array('search_validate' => ["not valid"], 'all_beers' => Beer::getAll(), 'all_breweries' => Brewery::getAll(), 'all_pubs' => Pub::getAll()));
         } else {
             $pubs_on_tap = $matching_beer->getPubs();
-            return $app['twig']->render('beer.html.twig', array('beer' => $matching_beer, 'pubs' => $pubs_on_tap));
+            return $app['twig']->render('beer.html.twig', array('beer' => $matching_beer, 'pubs' => $pubs_on_tap, 'brewery' => $matching_brewery));
         }
 
 
@@ -132,7 +134,8 @@
         $app['twig']->addGlobal('logged_user', $_SESSION['user']);
         $beer = Beer::find($id);
         $pubs_on_tap = $beer->getPubs();
-        return $app['twig']->render('beer2.html.twig', array('beer' => $beer, 'pubs' => $pubs_on_tap));
+        $brewery = Brewery::find($beer->getBreweryId());
+        return $app['twig']->render('beer.html.twig', array('beer' => $beer, 'pubs' => $pubs_on_tap, 'brewery' => $brewery));
     });
 
     //takes pub user to a page where they can add a pub

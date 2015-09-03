@@ -1,26 +1,68 @@
-
 {% embed "header.html.twig" %}
 {% endembed %}
 
-<h1>{{ beer.getName }} On Tap</h1>
-    <ul>
-        <li>Type: {{ beer.getType }}</li>
-        <li>ABV: {{ beer.getAbv }}</li>
-        <li>IBU: {{ beer.getIbu }}</li>
-        <li>Region: {{ beer.getRegion }}</li>
-    </ul>
+
+<div id='fix-padding' class="jumbotron col-sm-8 col-sm-offset-4">
+    <div class="row">
+        <div class="col-sm-4">
+            <h2>{{beer.getName}}</h2>
+        </div>
+        <div class="col-sm-4 col-sm-offset-4">
+            <ul class="list-inline">
+                <li>{{beer.getType}}</li>
+                <li>{{beer.getAbv}}% ABV</li>
+                <li>{{beer.getIbu}} IBUs</li>
+                <li>{{beer.getRegion}}</li>
+                <li><a href="/brewery_info/{{brewery.getId}}">{{brewery.getName}}</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="row col-sm-10">
+        <h3>Currently Offered At These Pubs</h3>
+        <div>
+            <table class='table table-responsive table-condensed'>
+                <thead>
+                    <tr>
+                        <th>
+                            Name
+                        </th>
+                        <th>
+                            Location
+                        </th>
+                        <th>
+                            Website
+                        </th>
+                    </tr>
+                </thead>
+            </table>
+        </div>
+        <div class="tbody">
+                <table class='table table-responsive table-condensed'>
+                    <tbody>
+                        {% for pub in pubs %}
+                            <tr>
+                                <td>
+                                    <a href="/pub_info/{{pub.getId}}">{{pub.getName}}</a>
+                                </td>
+                                <td>
+                                    {{pub.getLocation}}
+                                </td>
+                                <td>
+                                    <a href="{{pub.getLink}}">{{pub.getLink}}</a>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+</div>
 
 
-{% if pubs is not empty %}
-    <h2>{{ beer.getName }} is available at these fine establishments</h2>
-    {% for pub in pubs %}
-        <ul>
-            <li><a href="/pub_info/{{ pub.getId }}">{{ pub.getName }}</a></li>
-        </ul>
-    {% endfor %}
-{% else %}
-    <h4>{{ beer.getName }} isn't on tap anywhere at the moment.</h4>
-{% endif %}
+
 
 
 {% embed "footer.html.twig" %}
