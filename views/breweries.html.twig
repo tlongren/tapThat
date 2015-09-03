@@ -5,9 +5,9 @@
 <div class="row jumbotron col-sm-8 col-sm-offset-4">
 
     <div>
-        <h2>All Pubs</h2>
+        <h2>All Breweries</h2>
         <div class="table-responsive">
-            <table class='table'>
+            <table class='table table-condensed'>
                 <thead>
                     <tr>
                         <th>
@@ -23,19 +23,19 @@
                 </thead>
             </table>
         </div>
-        <div class="table-responsive tbody">
-            <table class="table">
+        <div class="tbody table-responsive">
+            <table class='table'>
                 <tbody>
-                    {% for pub in pubs %}
+                    {% for brewery in breweries %}
                         <tr>
                             <td>
-                                <a href='/pub/{{pub.getId}}'>{{pub.getName}}</a>
+                                <a href='/brewery_info/{{brewery.getId}}'>{{brewery.getName}}</a>
                             </td>
                             <td>
-                                {{pub.getLocation}}
+                                {{brewery.getLocation}}
                             </td>
                             <td>
-                                <a href="{{pub.getLink}}">{{pub.getLink}}</a>
+                                <a href='{{brewery.getLink}}'>{{brewery.getLink}}</a>
                             </td>
                         </tr>
                     {% endfor %}

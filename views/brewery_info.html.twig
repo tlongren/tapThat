@@ -2,17 +2,17 @@
 {% endembed %}
 
 
-<div class="row jumbotron">
+<div class="row jumbotron col-sm-8 col-sm-offset-4">
     <div class="col-sm-6">
         <h1>{{brewery.getName}}</h1>
         <h3>{{brewery.getLocation}}</h3>
         <h4><a href="{{brewery.getLink}}">{{brewery.getName}} Website</a></h4>
     </div>
-    <div class="beers_table col-sm-6">
-        <h2>Current Beers Offered</h2>
-        <div class="table-responsive table_beers">
+    <div class="col-sm-6">
+        <h2 class="center">Current Beers Offered</h2>
+        <div class="table-responsive">
 
-            <table class='table table-scrollable table-condensed'>
+            <table class='table table-condensed'>
                 <thead>
                     <tr>
                         <th>
@@ -29,6 +29,10 @@
                         </th>
                     </tr>
                 </thead>
+            </table>
+        </div>
+        <div class="table-responsive tbody">
+            <table class="table">
                 <tbody>
                     {% for beer in beers %}
                         <tr>
