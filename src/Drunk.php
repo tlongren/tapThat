@@ -6,15 +6,17 @@
         private $date_of_birth;
         private $location;
         private $email;
+        private $password;
         private $id;
 
 
-        function __construct($name, $date_of_birth, $location, $email, $id = null)
+        function __construct($name, $date_of_birth, $location, $email, $password, $id = null)
         {
             $this->name = $name;
             $this->date_of_birth = $date_of_birth;
             $this->location = $location;
             $this->email = $email;
+            $this->password = $password;
             $this->id = $id;
         }
 
@@ -65,9 +67,19 @@
             return $this->id;
         }
 
+        function getPassword()
+        {
+            return $this->password;
+        }
+
+        function setPassword($new_password)
+        {
+            $this->password = $new_password;
+        }
+
         function save()
         {
-            $GLOBALS['DB']->exec("INSERT INTO drunks (name, date_of_birth, location, email) VALUES ('{$this->getName()}', '{$this->getDateOfBirth()}', '{$this->getLocation()}', '{$this->getEmail()}')");
+            $GLOBALS['DB']->exec("INSERT INTO drunks (name, date_of_birth, location, email, password) VALUES ('{$this->getName()}', '{$this->getDateOfBirth()}', '{$this->getLocation()}', '{$this->getEmail()}', '{$this->getPassword()}');");
             $this->id = $GLOBALS['DB']->lastInsertId();
         }
 
@@ -116,6 +128,7 @@
             $GLOBALS['DB']->exec("DELETE FROM brews WHERE drunk_id = {$this->getId()}");
         }
 
+
         ////////////Static functions///////////////////
 
         static function getAll()
@@ -127,8 +140,9 @@
                 $date_of_birth = $drunk['date_of_birth'];
                 $location = $drunk['location'];
                 $email = $drunk['email'];
+                $password = $drunk['password'];
                 $id = $drunk['id'];
-                $new_drunk = new Drunk($name, $date_of_birth, $location, $email, $id);
+                $new_drunk = new Drunk($name, $date_of_birth, $location, $email, $password, $id);
                 array_push($drunks, $new_drunk);
             }
             return $drunks;
@@ -152,6 +166,19 @@
             }
             return $found_drunk;
         }
+
+        static function findByEmail($email)
+        {
+            $found_drunk = null;
+            $drunks = Drunk::getAll();
+            foreach ($drunks as $drunk) {
+                if ($drunk->getEmail() == $email) {
+                    $found_drunk = $drunk;
+                }
+            }
+            return $found_drunk;
+        }
+
     }
 
  ?>
