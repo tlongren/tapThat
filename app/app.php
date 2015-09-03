@@ -42,7 +42,7 @@
     $app->get('/', function() use ($app) {
         $all_beers = Beer::getAll();
         $app['twig']->addGlobal('logged_user', $_SESSION['user']);
-        return $app['twig']->render('index.html.twig', array('all_beers' => $all_beers, 'all_breweries' => Brewery::getAll(), 'all_pubs' => Pub::getAll()));
+        return $app['twig']->render('index.html.twig', array('search_validate' => [], 'all_beers' => $all_beers, 'all_breweries' => Brewery::getAll(), 'all_pubs' => Pub::getAll()));
     });
 
     //validate signin
@@ -54,17 +54,17 @@
             $login_status = ['fail'];
             $_SESSION['user'] = null;
             $app['twig']->addGlobal('logged_user', $_SESSION['user']);
-            return $app['twig']->render('index.html.twig', array('login_status' => $login_status, 'all_beers' => $all_beers, 'all_breweries' => Brewery::getAll(), 'all_pubs' => Pub::getAll()));
+            return $app['twig']->render('index.html.twig', array('search_validate' => [], 'login_status' => $login_status, 'all_beers' => $all_beers, 'all_breweries' => Brewery::getAll(), 'all_pubs' => Pub::getAll()));
         } elseif ($user->getPassword() != $_POST['password'])
         {
             $login_status = ['fail'];
             $_SESSION['user'] = null;
             $app['twig']->addGlobal('logged_user', $_SESSION['user']);
-            return $app['twig']->render('index.html.twig', array('login_status' => $login_status, 'all_beers' => $all_beers, 'all_breweries' => Brewery::getAll(), 'all_pubs' => Pub::getAll()));
+            return $app['twig']->render('index.html.twig', array('search_validate' => [], 'login_status' => $login_status, 'all_beers' => $all_beers, 'all_breweries' => Brewery::getAll(), 'all_pubs' => Pub::getAll()));
         } else {
             $_SESSION['user'] = $user;
             $app['twig']->addGlobal('logged_user', $_SESSION['user']);
-            return $app['twig']->render('index.html.twig', array('all_beers' => $all_beers, 'all_breweries' => Brewery::getAll(), 'all_pubs' => Pub::getAll()));
+            return $app['twig']->render('index.html.twig', array('search_validate' => [], 'all_beers' => $all_beers, 'all_breweries' => Brewery::getAll(), 'all_pubs' => Pub::getAll()));
         }
     });
     //Logout of website
@@ -72,10 +72,10 @@
         $_SESSION['user'] = null;
         $app['twig']->addGlobal('logged_user', $_SESSION['user']);
         $all_beers = Beer::getAll();
-        return $app['twig']->render('index.html.twig', array('all_beers' => $all_beers, 'all_breweries' => Brewery::getAll(), 'all_pubs' => Pub::getAll()));
+        return $app['twig']->render('index.html.twig', array('search_validate' => [], 'all_beers' => $all_beers, 'all_breweries' => Brewery::getAll(), 'all_pubs' => Pub::getAll()));
     });
 
-    //grab search results and return matching beer if exact match
+    //grab search results and return matching beer
     $app->get('/search_beers', function() use ($app) {
         $app['twig']->addGlobal('logged_user', $_SESSION['user']);
         $all_beers = Beer::getAll();
@@ -85,8 +85,16 @@
                 $matching_beer = $beer;
             }
         }
-        $pubs_on_tap = $matching_beer->getPubs();
-        return $app['twig']->render('beer.html.twig', array('beer' => $matching_beer, 'pubs' => $pubs_on_tap));
+
+
+        if (empty($matching_beer)) {
+            return $app['twig']->render('index.html.twig', array('search_validate' => ["not valid"], 'all_beers' => Beer::getAll(), 'all_breweries' => Brewery::getAll(), 'all_pubs' => Pub::getAll()));
+        } else {
+            $pubs_on_tap = $matching_beer->getPubs();
+            return $app['twig']->render('beer.html.twig', array('beer' => $matching_beer, 'pubs' => $pubs_on_tap));
+        }
+
+
     });
 
     //takes user to a page listing all pubs
@@ -199,12 +207,12 @@
         $all_beers = Beer::getAll();
         $new_drunk = new Drunk($_POST['name'], $_POST['date_of_birth'], $_POST['location'], $_POST['email'], $_POST['password']);
         $new_drunk->save();
-        return $app['twig']->render('index.html.twig', array('all_beers' => $all_beers, 'all_breweries' => Brewery::getAll(), 'all_pubs' => Pub::getAll()));
+        return $app['twig']->render('index.html.twig', array('search_validate' => [], 'all_beers' => $all_beers, 'all_breweries' => Brewery::getAll(), 'all_pubs' => Pub::getAll()));
     });
 
 
     //Get user profile
-    $app->get('/pub_login/{id}', function($id) use($app) {
+    $app->get('/public_login/{id}', function($id) use($app) {
         $app['twig']->addGlobal('logged_user', $_SESSION['user']);
         $drunk = Drunk::find($id);
         $drunk_beers = $drunk->getBeers();

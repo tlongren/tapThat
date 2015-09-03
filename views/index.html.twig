@@ -11,61 +11,64 @@
 </div>
 
 <div class="jumbotron jumbo-index col-sm-8 col-sm-offset-4">
-    <h2 class="jumbo-search-header">Search taps</h2>
-    <form action="/search_beers" autocomplete="off">
-        <div class="input-group">
-            <input name="beer" value="" type="text" class="form-control" placeholder="Search for a beer..." id="keyword">
-            <div id="results">
+        <h2 class="jumbo-search-header">Search taps</h2>
+        <form action="/search_beers" autocomplete="off">
+            <div class="input-group">
+                <input name="beer" value="" type="text" class="form-control" placeholder="Search for a beer..." id="keyword">
+                <div id="results">
+                </div>
+                    <span class="input-group-btn">
+                        <button type="submit" class="btn left btn-warning">Search</button>
+                    </span>
             </div>
-                <span class="input-group-btn">
-                    <button type="submit" class="btn left btn-warning">Search</button>
-                </span>
-        </div>
-    </form>
+        </form>
+        {% if search_validate is not empty %}
+            <p>No beers found, please try searching like you're not already drunk</p>
+        {% endif %}
 
-    <div class="center">
-        <div class="row">
-            <div class="col-sm-4">
-                <h3>Local Favorites</h3>
-                {% if all_beers is not empty %}
-                    <ul class="homepage">
-                        {% for beer in all_beers[0:5]  %}
-                            <li><a href="/beer/{{ beer.getId}}">{{ beer.getName }}</a></li>
-                        {% endfor %}
-                            <li><a href="/beers">View all beers</a></li>
-                    </ul>
-                {% else %}
-                    <p>There are no beers yet</p>
-                {% endif %}
-            </div>
-            <div class="col-sm-4">
-                <h3>Top Breweries</h3>
-                {% if all_breweries is not empty %}
-                    <ul class="homepage">
-                        {% for brewery in all_breweries[0:5] %}
-                            <li><a href="/brewery_info/{{ brewery.getId}}">{{ brewery.getName }}</a></li>
-                        {% endfor %}
-                            <li><a href="/breweries">View all breweries</a></li>
-                    </ul>
-                {% else %}
-                    <p>There are no breweries yet</p>
-                {% endif %}
-            </div>
-            <div class="col-sm-4">
-                <h3>Top Pubs</h3>
-                {% if all_pubs is not empty %}
-                    <ul class="homepage">
-                        {% for pub in all_pubs[0:5] %}
-                            <li><a href="/pub_info/{{ pub.getId}}">{{ pub.getName }}</a></li>
-                        {% endfor %}
-                            <li><a href="/pubs">View all pubs</a></li>
-                    </ul>
-                {% else %}
-                    <p>There are no pubs yet</p>
-                {% endif %}
+        <div class="center">
+            <div class="row">
+                <div class="col-sm-4">
+                    <h3>Local Favorites</h3>
+                    {% if all_beers is not empty %}
+                        <ul class="homepage">
+                            {% for beer in all_beers[0:5]  %}
+                                <li><a href="/beer/{{ beer.getId}}">{{ beer.getName }}</a></li>
+                            {% endfor %}
+                                <li><a href="/beers">View all beers</a></li>
+                        </ul>
+                    {% else %}
+                        <p>There are no beers yet</p>
+                    {% endif %}
+                </div>
+                <div class="col-sm-4">
+                    <h3>Top Breweries</h3>
+                    {% if all_breweries is not empty %}
+                        <ul class="homepage">
+                            {% for brewery in all_breweries[0:5] %}
+                                <li><a href="/brewery_info/{{ brewery.getId}}">{{ brewery.getName }}</a></li>
+                            {% endfor %}
+                                <li><a href="/breweries">View all breweries</a></li>
+                        </ul>
+                    {% else %}
+                        <p>There are no breweries yet</p>
+                    {% endif %}
+                </div>
+                <div class="col-sm-4">
+                    <h3>Top Pubs</h3>
+                    {% if all_pubs is not empty %}
+                        <ul class="homepage">
+                            {% for pub in all_pubs[0:5] %}
+                                <li><a href="/pub_info/{{ pub.getId}}">{{ pub.getName }}</a></li>
+                            {% endfor %}
+                                <li><a href="/pubs">View all pubs</a></li>
+                        </ul>
+                    {% else %}
+                        <p>There are no pubs yet</p>
+                    {% endif %}
+                </div>
             </div>
         </div>
-    </div>
 </div>
 
 <div class="bug-fix">
