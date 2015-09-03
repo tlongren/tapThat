@@ -76,7 +76,7 @@
     //takes pub user to a page where they can add a pub
     $app->get('/pub_login', function() use ($app) {
         $all_pubs = Pub::getAll();
-        return $app['twig']->render('pub.html.twig', array('all_pubs' => $all_pubs));
+        return $app['twig']->render('pub.html.twig', array('pubs' => $all_pubs));
     });
 
     //posts the new pub to the pubs homepage

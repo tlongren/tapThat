@@ -6,6 +6,10 @@ body {
     background-color: rgb(253,250,236);
 }
 
+.jumbo-index {
+    padding-top: 0;
+}
+
 .right {
     float:right;
 }
@@ -45,7 +49,7 @@ body {
 .jumbotron {
     background-color: rgba(255,242,198,1);
     max-height: 75%;
-    box-shadow: 10px 10px 5px #888888;
+    box-shadow: 2px 2px 5px #888888;
 }
 
 .background {
@@ -60,12 +64,17 @@ body {
 }
 
 .navbar, .footer {
-    background-color: rgba(249,163,74, .50)
+    background-color: rgba(249,163,74, .50);
 }
 
 .btn-default {
     background-color: rgb(249,163,74);
     color: white;
+    border: none;
+}
+.btn-default:hover {
+    background-color: white;
+    color: rgb(249,163,74);
 }
 
 .footer {
@@ -97,6 +106,10 @@ body {
 
 .table > thead > tr > th, .table > tbody > tr > th, .table > tfoot > tr > th, .table > thead > tr > td, .table > tbody > tr > td, .table > tfoot > tr > td {
     border-top: 0px;
+}
+
+.table > thead > tr > th {
+    border-color: rgb(240,173,78);
 }
 
 /*******************/

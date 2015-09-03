@@ -1,0 +1,69 @@
+{% embed "header.html.twig" %}
+{% endembed %}
+
+
+<div class="row jumbotron col-sm-8 col-sm-offset-4">
+    <div class="row">
+        <div class="col-sm-4">
+            <h2>{{beer.getName}}</h2>
+        </div>
+        <div class="col-sm-4 col-sm-offset-4">
+            <ul class="list-inline">
+                <li>{{beer.getType}}</li>
+                <li>{{beer.getAbv}}% ABV</li>
+                <li>{{beer.getIbu}} IBUs</li>
+                <li>{{beer.getRegion}}</li>
+                <li>Brewery</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="row col-sm-10">
+        <h3>Currently Offered At These Pubs</h3>
+        <div class="table-responsive">
+            <table class='table'>
+                <thead>
+                    <tr>
+                        <th>
+                            Name
+                        </th>
+                        <th>
+                            Location
+                        </th>
+                        <th>
+                            Website
+                        </th>
+                    </tr>
+                </thead>
+            </table>
+        </div>
+        <div class="tbody table-responsive">
+                <table class="table">
+                    <tbody>
+                        {% for pub in pubs %}
+                            <tr>
+                                <td>
+                                    {{pub.getName}}
+                                </td>
+                                <td>
+                                    {{pub.getLocation}}
+                                </td>
+                                <td>
+                                    {{pub.getLink}}
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+
+
+
+{% embed "footer.html.twig" %}
+{% endembed %}
