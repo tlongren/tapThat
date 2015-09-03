@@ -70,7 +70,7 @@
     $app->get('/beer/{id}', function($id) use ($app) {
         $beer = Beer::find($id);
         $pubs_on_tap = $beer->getPubs();
-        return $app['twig']->render('beer.html.twig', array('beer' => $beer, 'pubs' => $pubs_on_tap));
+        return $app['twig']->render('beer2.html.twig', array('beer' => $beer, 'pubs' => $pubs_on_tap));
     });
 
     //takes pub user to a page where they can add a pub

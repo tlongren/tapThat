@@ -1,3 +1,7 @@
+hr {
+    margin: 5px;
+}
+
 .right {
     float:right;
 }
@@ -35,7 +39,8 @@
 }
 
 .jumbotron {
-    background-color: rgba(220,220,220,.75);
+    background-color: rgba(255,242,198,1);
+    max-height: 75%;
 }
 
 .background {
@@ -49,11 +54,19 @@
     margin-bottom: 15px;
 }
 
+.navbar, .footer {
+    background-color: rgba(249,163,74, .50)
+}
+
+.btn-default {
+    background-color: rgb(249,163,74);
+    color: white;
+}
+
 .footer {
     position: fixed;
     bottom: 0;
     width: 100%;
-    background-color: white;
     z-index: 2;
 }
 
@@ -61,18 +74,24 @@
     margin-bottom: 0;
 }
 
+/*******************/
+/*Table styling CSS*/
+/*****************/
 
-.table_beers {
+
+.tbody {
     max-height: 250px;
-    overflow-y: auto;
+    overflow-y: scroll;
 }
+
+.table {
+    margin-bottom: 2px;
+    table-layout: fixed;
+}
+
 
 .table > thead > tr > th, .table > tbody > tr > th, .table > tfoot > tr > th, .table > thead > tr > td, .table > tbody > tr > td, .table > tfoot > tr > td {
     border-top: 0px;
-}
-
-.table_beers > h2 {
-    border-bottom: 1px solid #D3D3D3;
 }
 
 /*******************/
