@@ -1,5 +1,6 @@
 <?php
     require_once "Beer.php";
+    require_once "Brew.php";
     class Drunk
     {
         private $name;

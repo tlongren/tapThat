@@ -15,45 +15,33 @@
                 <thead>
                     <tr>
                         <th>
-                            Name
+                            Beer
                         </th>
                         <th>
-                            Type
+                            Pub
                         </th>
                         <th>
-                            ABV
+                            Beer Rating
                         </th>
                         <th>
-                            IBUs
-                        </th>
-                        <th>
-                            Region
-                        </th>
-                        <th>
-                            Brewery
+                            Date
                         </th>
                     </tr>
                 </thead>
                 <tbody>
-                    {% for beer in drunk_beers %}
+                    {% for brew in brews %}
                         <tr>
                             <td>
-                                {{beer.getName}}
+                                {{brew['beer_name']}}
                             </td>
                             <td>
-                                {{beer.getType}}
+                                {{brew['pub_name']}}
                             </td>
                             <td>
-                                {{beer.getAbv}}%
+                                {{brew['beer_rating']}} Beers
                             </td>
                             <td>
-                                {{beer.getIbu}}
-                            </td>
-                            <td>
-                                {{beer.region}}
-                            </td>
-                            <td>
-                                {{beer.Brewery}}
+                                {{brew['brew_date']}}
                             </td>
                         </tr>
                     {% endfor %}

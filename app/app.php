@@ -215,8 +215,20 @@
     $app->get('/public_login/{id}', function($id) use($app) {
         $app['twig']->addGlobal('logged_user', $_SESSION['user']);
         $drunk = Drunk::find($id);
-        $drunk_beers = $drunk->getBeers();
-        return $app['twig']->render("drunk_profile.html.twig", array('drunk' => $drunk, 'drunk_beers' => $drunk_beers));
+        $drunk_brews = $drunk->getBrews();
+        $brews = array();
+        foreach ($drunk_brews as $brew) {
+            $beer = Beer::find($brew->getBeerId());
+            $beer_name = $beer->getName();
+            $pub = Pub::find($brew->getPubId());
+            $pub_name = $pub->getName();
+            $brew_info = array('beer_name' => $beer_name,
+                  'pub_name' => $pub_name,
+                  'beer_rating' => $brew->getBeerRating(),
+                  'brew_date' => $brew->getBrewDate());
+            array_push($brews, $brew_info);
+        }
+        return $app['twig']->render("drunk_profile.html.twig", array('drunk' => $drunk, 'brews' => $brews));
     });
 
     //Display all beers
