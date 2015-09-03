@@ -43,7 +43,7 @@
                         {% for beer in beers %}
                             <tr>
                                 <td>
-                                    {{beer.getName}}
+                                    <a href="/beer/{{beer.getId}}">{{beer.getName}}</a>
                                 </td>
                                 <td>
                                     {{beer.getType}}

@@ -94,7 +94,7 @@
         //static methods
         static function getAll()
         {
-            $breweries_query = $GLOBALS['DB']->query("SELECT * FROM breweries;");
+            $breweries_query = $GLOBALS['DB']->query("SELECT * FROM breweries ORDER BY name ASC;");
             $all_breweries = array();
             foreach ($breweries_query as $brewery) {
                 $name = $brewery['name'];

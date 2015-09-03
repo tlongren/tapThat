@@ -115,7 +115,7 @@
         //static methods
         static function getAll()
         {
-            $pubs_query = $GLOBALS['DB']->query("SELECT * FROM pubs;");
+            $pubs_query = $GLOBALS['DB']->query("SELECT * FROM pubs ORDER BY name ASC;");
             $all_pubs = array();
             foreach ($pubs_query as $pub) {
                 $name = $pub['name'];

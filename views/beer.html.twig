@@ -2,7 +2,7 @@
 {% endembed %}
 
 
-<div class="row jumbotron col-sm-8 col-sm-offset-4">
+<div id='fix-padding' class="jumbotron col-sm-8 col-sm-offset-4">
     <div class="row">
         <div class="col-sm-4">
             <h2>{{beer.getName}}</h2>
@@ -13,15 +13,15 @@
                 <li>{{beer.getAbv}}% ABV</li>
                 <li>{{beer.getIbu}} IBUs</li>
                 <li>{{beer.getRegion}}</li>
-                <li>Brewery</li>
+                <li><a href="/brewery_info/{{brewery.getId}}">{{brewery.getName}}</a></li>
             </ul>
         </div>
     </div>
 
     <div class="row col-sm-10">
         <h3>Currently Offered At These Pubs</h3>
-        <div class="table-responsive">
-            <table class='table'>
+        <div>
+            <table class='table table-responsive table-condensed'>
                 <thead>
                     <tr>
                         <th>
@@ -37,19 +37,19 @@
                 </thead>
             </table>
         </div>
-        <div class="tbody table-responsive">
-                <table class="table">
+        <div class="tbody">
+                <table class='table table-responsive table-condensed'>
                     <tbody>
                         {% for pub in pubs %}
                             <tr>
                                 <td>
-                                    <a href="/pub/{{pub.getId}}">{{pub.getName}}</a>
+                                    <a href="/pub_info/{{pub.getId}}">{{pub.getName}}</a>
                                 </td>
                                 <td>
                                     {{pub.getLocation}}
                                 </td>
                                 <td>
-                                    {{pub.getLink}}
+                                    <a href="{{pub.getLink}}">{{pub.getLink}}</a>
                                 </td>
                             </tr>
                         {% endfor %}

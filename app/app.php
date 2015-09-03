@@ -132,7 +132,8 @@
         $app['twig']->addGlobal('logged_user', $_SESSION['user']);
         $beer = Beer::find($id);
         $pubs_on_tap = $beer->getPubs();
-        return $app['twig']->render('beer.html.twig', array('beer' => $beer, 'pubs' => $pubs_on_tap));
+        $brewery = Brewery::find($beer->getBreweryId());
+        return $app['twig']->render('beer.html.twig', array('beer' => $beer, 'pubs' => $pubs_on_tap, 'brewery' => $brewery));
     });
 
     //takes pub user to a page where they can add a pub
@@ -150,7 +151,7 @@
         $link = $_POST['link'];
         $new_pub = new Pub($name, $location, $link);
         $new_pub->save();
-        return $app['twig']->render('pub.html.twig', array('all_pubs' => Pub::getAll()));
+        return $app['twig']->render('pub.html.twig', array('pubs' => Pub::getAll()));
     });
 
     //deletes all the pubs
