@@ -1,7 +1,7 @@
 {% embed "header.html.twig" %}
 {% endembed %}
 
-<div class="jumbotron">
+<div class="jumbotron col-sm-8 col-sm-offset-4">
 
     <form method="post" action="/public_login/{{logged_user.getId}}">
         <input id="drunk_id" type="hidden" value="{{logged_user.getId}}" name="drunk_id">
