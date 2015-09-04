@@ -85,7 +85,7 @@ a:hover {
 }
 
 .jumbotron {
-    background-color: rgba(255,242,198,.60);
+    background-color: rgba(255,242,198,.75);
     /*max-height: 75%;*/
     /*min-height: 50%;*/
     box-shadow: 2px 2px 5px #888888;
