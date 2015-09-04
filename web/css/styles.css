@@ -149,9 +149,6 @@ a:hover {
     color:white;
 }
 
-#fix-padding {
-    padding: 0 5px;
-}
 
 h1 {
     margin-top: 0;
@@ -168,7 +165,7 @@ h1 {
 }
 
 .tbody {
-    max-height: 250px;
+    max-height: 90%;
     overflow-y: auto;
 }
 
@@ -195,6 +192,19 @@ h1 {
     padding: 0;
     margin: 0 auto;
     text-align: center;
+}
+
+#pub_page_form {
+    margin-top: 30%;
+    padding: 10px;
+}
+
+#pub-login-list {
+    height: 69%;
+}
+
+#invalid_login {
+    color: white;
 }
 
 /*******************/

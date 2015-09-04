@@ -51,6 +51,11 @@
                     <div class="col-sm-offset-8 col-sm-4">
                         <p class="pub-login"><a href="/pub_login">Pub owner? Login here</a></p>
                     </div>
+                    {% if login_status is not empty %}
+                        <div class="right" id="invalid_login">
+                            <p>That username/password combination is not recognized, please try again!</p>
+                        </div>
+                    {% endif %}
                 </div>
 
             {% else %}
@@ -64,8 +69,3 @@
           </nav>
 
           <div class="container">
-              {% if login_status is not empty %}
-                  <div class="right">
-                      <p>That username/password combination is not recognized, please try again!</p>
-                  </div>
-              {% endif %}

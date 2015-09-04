@@ -1,11 +1,11 @@
 {% embed "header.html.twig" %}
 {% endembed %}
 
+
 {% embed "create_pub_form.html.twig" %}
 {% endembed %}
 
-
-<div class="row col-sm-8 col-sm-offset-4 jumbotron">
+<div class="row col-sm-8 jumbotron col-sm-offset-1" id="pub-login-list">
     <h3>Pubs</h3>
     <div>
         <table class='table table-responsive table-condensed'>
@@ -30,7 +30,7 @@
                     {% for pub in pubs %}
                         <tr>
                             <td>
-                                <a href="/pub_info/{{pub.getId}}">{{pub.getName}}</a>
+                                <a href="/pub/{{pub.getId}}">{{pub.getName}}</a>
                             </td>
                             <td>
                                 {{pub.getLocation}}
@@ -45,6 +45,8 @@
         </div>
     </div>
 </div>
+
+
 
 {% embed "footer.html.twig" %}
 {% endembed %}
