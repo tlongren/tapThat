@@ -8,6 +8,8 @@
 
 This application allows a user search for a particular beer at a pub and see a list of all beers from a pub or a brewery. Users can also create profiles where they can log and rate the beers that they drink.
 
+http://tapthat.therealphilshannon.xyz/
+
 ## Setup
 * Clone this repository
 
